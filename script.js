@@ -1,5 +1,6 @@
 const boxQuestion = document.querySelector("#box-question")
 const nextBtn = document.getElementById("next-question");
+const prevBtn = document.getElementById("prev-question");
 const title = document.getElementById("title");
 const options = document.getElementById("options");
 const displayLength = document.getElementById("length");
@@ -11,14 +12,16 @@ function nextQuestion(data) {
   if (currQuiz < data.length - 1 ) {
     currQuiz++;
     console.log(currQuiz)
-  } else {
-    nextBtn.disabled = true;
   }
+}
+
+function prevQuestion(data) {
+  currQuiz--;
 }
 
 function check(i, data) {
   if(i === data.correctAnswer) {
-    score++
+    score++;
   }
 }
 
@@ -35,6 +38,7 @@ const displayOptions = (option) => {
 };
 
 
+
 function updateQuestion(data,optionCard) {
   const randomOption = [data[currQuiz].correctAnswer, ...data[currQuiz].incorrectAnswers].sort(() => Math.random() - 0.5);
 
@@ -42,7 +46,7 @@ function updateQuestion(data,optionCard) {
   randomOption.forEach(option => optionCard += displayOptions(option));
   options.innerHTML = optionCard;
 
-  displayLength.innerHTML = `1 / ${currQuiz + 1}`
+  displayLength.innerHTML = `${currQuiz + 1} / ${data.length}`
 }
 
 async function getQuizzes() {
@@ -60,6 +64,11 @@ async function getQuizzes() {
     
     nextBtn.addEventListener("click", () => {
       nextQuestion(resp);
+      updateQuestion(resp, optionCard)
+    });
+
+    prevBtn.addEventListener("click", () => {
+      prevQuestion();
       updateQuestion(resp, optionCard)
     });
 
