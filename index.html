@@ -7,14 +7,18 @@
   <title>Document</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-  <h1 class="text-4xl font-bold">hello world</h1>
+<body class="flex items-center justify-center flex-col ">
+  <h1 class="text-4xl font-bold">Quiz App</h1>
   <div class="box bg-green-200 w-P1/2 p-4 rounded-md flex flex-col justify-center items-center" id="box-question">
-      
+    <div id="length"></div>
     <div id="title"></div>
     <div id="options" class="flex flex-col items-center justify-centers"></div>
   </div>
-  <button id="next-question" class="bg-green-300 p-2 rounded-md">next question</button>
+  <div >
+    <button id="prev-question" class="bg-green-300 p-2 rounded-md">prev </button>
+    <button id="next-question" class="bg-green-300 p-2 rounded-md">next </button>
+  </div>
+  <button type="submit" class="bg-indigo-400 p-2 rounded-md">submit</button>
   <script src="script.js"></script>
 </body>
 </html>

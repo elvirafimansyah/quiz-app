@@ -2,16 +2,17 @@ const boxQuestion = document.querySelector("#box-question")
 const nextBtn = document.getElementById("next-question");
 const title = document.getElementById("title");
 const options = document.getElementById("options");
+const displayLength = document.getElementById("length");
 
 let currQuiz = 0;
-let score = 0
+let score = 0;
 
 function nextQuestion(data) {
   if (currQuiz < data.length - 1 ) {
     currQuiz++;
     console.log(currQuiz)
   } else {
-    nextBtn.style.display = "none"
+    nextBtn.disabled = true;
   }
 }
 
@@ -33,11 +34,15 @@ const displayOptions = (option) => {
   `
 };
 
+
 function updateQuestion(data,optionCard) {
   const randomOption = [data[currQuiz].correctAnswer, ...data[currQuiz].incorrectAnswers].sort(() => Math.random() - 0.5);
+
   title.innerHTML = displayQuestion(data);
   randomOption.forEach(option => optionCard += displayOptions(option));
   options.innerHTML = optionCard;
+
+  displayLength.innerHTML = `1 / ${currQuiz + 1}`
 }
 
 async function getQuizzes() {
@@ -57,6 +62,8 @@ async function getQuizzes() {
       nextQuestion(resp);
       updateQuestion(resp, optionCard)
     });
+
+
     console.log(resp)
   } catch(err) {
     console.log("ayam!")
