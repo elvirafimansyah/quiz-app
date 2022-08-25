@@ -5,6 +5,8 @@ const title = document.getElementById("title");
 const options = document.getElementById("options");
 const displayLength = document.getElementById("length");
 
+console.log(options)
+
 let currQuiz = 0;
 let score = 0;
 
@@ -15,15 +17,21 @@ function nextQuestion(data) {
   }
 }
 
-function prevQuestion(data) {
+function prevQuestion() {
   currQuiz--;
 }
 
-function check(i, data) {
-  if(i === data.correctAnswer) {
-    score++;
-  }
+function Check(value, e, index) {
+  console.log(value)
+  setStatus(e, e.dataset.correct);
 }
+
+function setStatus(element, correct) {
+  if(correct) {
+    element.classList.add("bg-indigo-800");
+  } 
+}
+
 
 const displayQuestion = (quiz) => {
   return`
@@ -31,19 +39,26 @@ const displayQuestion = (quiz) => {
   `
 }
 
-const displayOptions = (option) => {
+const displayOptions = (option, index) => {
   return`
-    <button onclick="e => check(e)">${option}</button>
+     <li>
+        <input type="radio" id="${option}" name="option" value="${option}" class="hidden peer" required onclick="Check(this.value, this)">
+        <label for="${option}"
+          class="inline-flex justify-between items-center w-96 p-5 m-2 text-gray-500 bg-white rounded-lg border border-gray-200 cursor-pointer  peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100">
+          <div class="block">
+            <div class="w-full text-lg font-semibold">${option}</div>
+          </div>`
+        </label>
+      </li>
   `
 };
 
 
-
-function updateQuestion(data,optionCard) {
+function updateQuestion(data, optionCard) {
   const randomOption = [data[currQuiz].correctAnswer, ...data[currQuiz].incorrectAnswers].sort(() => Math.random() - 0.5);
 
   title.innerHTML = displayQuestion(data);
-  randomOption.forEach(option => optionCard += displayOptions(option));
+  randomOption.forEach((option, i) => optionCard += displayOptions(option, i));
   options.innerHTML = optionCard;
 
   displayLength.innerHTML = `${currQuiz + 1} / ${data.length}`
@@ -55,11 +70,6 @@ async function getQuizzes() {
     let req = await fetch("https://the-trivia-api.com/api/questions?limit=5");
     let resp = await req.json();
     
-    // const randomOption = [resp[currQuiz].correctAnswer, ...resp[currQuiz].incorrectAnswers].sort(() => Math.random() - 0.5);
-    // title.innerHTML = displayQuestion(resp);
-    // randomOption.forEach(option => optionCard += displayOptions(option));
-    // options.innerHTML = optionCard;
-
     updateQuestion(resp, optionCard)
     
     nextBtn.addEventListener("click", () => {
@@ -72,13 +82,11 @@ async function getQuizzes() {
       updateQuestion(resp, optionCard)
     });
 
-
     console.log(resp)
   } catch(err) {
     console.log("ayam!")
   }
 }
-
 
 document.addEventListener("DOMContentLoaded", async () => {
   await getQuizzes()
