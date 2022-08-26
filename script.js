@@ -22,15 +22,11 @@ function prevQuestion() {
 }
 
 function Check(value, e, index) {
-  console.log(value)
+  console.log(value);
+  const correct = e.dataset.correct;
   setStatus(e, e.dataset.correct);
 }
 
-function setStatus(element, correct) {
-  if(correct) {
-    element.classList.add("bg-indigo-800");
-  } 
-}
 
 
 const displayQuestion = (quiz) => {
@@ -42,13 +38,13 @@ const displayQuestion = (quiz) => {
 const displayOptions = (option, index) => {
   return`
      <li>
-        <input type="radio" id="${option}" name="option" value="${option}" class="hidden peer" required onclick="Check(this.value, this)">
+        <input type="radio" id="${option}" name="option" value="${option}" class="hidden peer" required onchange="Check(this.value, this)">
         <label for="${option}"
           class="inline-flex justify-between items-center w-96 p-5 m-2 text-gray-500 bg-white rounded-lg border border-gray-200 cursor-pointer  peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100">
           <div class="block">
             <div class="w-full text-lg font-semibold">${option}</div>
-          </div>`
-        </label>
+          </div>
+        </label>  
       </li>
   `
 };
