@@ -7,21 +7,34 @@
   <title>Document</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
+<body class="flex items-center justify-center flex-col">
+  <section id="home">
+    <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Select an option</label>
+    <select id="countries"
+      class="bg-gray-50 border border-gray-300 px-20 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
+      <option selected>Choose a country</option>
+      <option value="US">United States</option>
+      <option value="CA">Canada</option>
+      <option value="FR">France</option>
+      <option value="DE">Germany</option>
+    </select>
+  </section>
 
-<body class="flex items-center justify-center flex-col ">
-  <h1 class="text-4xl font-bold">Quiz App</h1>
-  <div class="box w-P1/2 p-4 rounded-md flex flex-col justify-center items-center" id="box-question">
-    <div id="length"></div>
-    <div id="title"></div>
-    <ul class="flex flex-col items-center justify-centers" id="options">
-    </ul>
-  </div>
-  <div>
-    <button id="next-question" class="bg-green-300 p-2 rounded-md">next </button>
-  </div>
-  <button type="submit" class="bg-indigo-400 p-2 rounded-md">submit</button>
-  <h1 id="score">0</h1>
-  <script src="script.js"></script>
+  <section id="quiz-" class="">
+    <h1 class="text-4xl font-bold">Quiz App</h1>
+    <div class="box w-P1/2 p-4 rounded-md flex flex-col justify-center items-center" id="box-question">
+      <div id="length"></div>
+      <div id="title"></div>
+      <ul class="flex flex-col items-center justify-centers" id="options">
+      </ul>
+    </div>
+    <div>
+      <button id="next-question" class="bg-green-300 p-2 rounded-md">next </button>
+    </div>
+    <button type="submit" class="bg-indigo-400 p-2 rounded-md">submit</button>
+    <h1 id="score">0</h1>
+    <script src="script.js"></script>
+  </section>
 </body>
 
 </html>
