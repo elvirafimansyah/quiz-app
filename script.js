@@ -1,3 +1,81 @@
+// Home
+// * category
+const category = document.getElementById('select-category');
+const categories_data = [
+  {
+    name: "Arts & Literature",
+    category: "arts_and_literature"
+  },
+  {
+    name: "Film & TV",
+    category: "film_and_tv"
+  },
+  {
+    name: "Food & Drink",
+    category: "food_and_drink"
+  },
+  {
+    name: "General Knowledge",
+    category: "general_knowledge"
+  },
+  {
+    name: "Geography",
+    category: "geography"
+  }, 
+  {
+    name: "History",
+    category: "history"
+  },
+  {
+    name: "Music",
+    category: "music"
+  },
+  {
+    name: "Science",
+    category: "science"
+  },
+  {
+    name: "Society & Culture",
+    category: "society_and_culture"
+  },
+  {
+    name: "Sport & Leisure",
+    category: "sport_and_leisure"
+  },
+]
+
+const categoryOptions = (data) => {
+  return `
+    <option value="${data.category}" >${data.name}</option>
+  `
+}
+
+function showCategory() {
+  let categoryE = "";
+  categories_data.forEach(data => categoryE += categoryOptions(data));
+  category.innerHTML += categoryE;
+}
+
+category.addEventListener("change", e => {
+  const currOptionCategory = category.options[category.selectedIndex].value;
+  console.log(currOptionCategory)
+})
+
+// *diffuculty
+const diffucult = document.getElementById("select-difficulty");
+const diff_list = ["easy", "medium", "hard"];
+const difOptionUI = (data) => {
+  return`
+    <option value="${data}" >${data}</option>
+  `
+}
+
+let diffE = "";
+diff_list.forEach((list) => diffE += difOptionUI(list));
+diffucult.innerHTML += diffE;
+
+
+// Quiz Section
 const boxQuestion = document.querySelector("#box-question")
 const nextBtn = document.getElementById("next-question");
 const prevBtn = document.getElementById("prev-question");
@@ -25,10 +103,6 @@ const displayQuestion = (quiz) => {
 }
 
 
-
-
-
-
 function updateQuestion(data, optionCard) {
   const randomOption = [data[currQuiz].correctAnswer, ...data[currQuiz].incorrectAnswers].sort(() => Math.random() - 0.5);
 
@@ -37,7 +111,7 @@ function updateQuestion(data, optionCard) {
   options.innerHTML = optionCard;
 
 
-  const eOption = document.querySelectorAll(".opp");
+  const eOption = document.querySelectorAll(".radio-option");
 
   eOption.forEach((e) => {
     e.addEventListener("click", e => {
@@ -54,7 +128,6 @@ function updateQuestion(data, optionCard) {
 }
 
 
-
 async function getQuizzes() {
   let optionCard = "";
   let req = await fetch("https://the-trivia-api.com/api/questions?limit=5");
@@ -67,20 +140,19 @@ async function getQuizzes() {
     updateQuestion(resp, optionCard)
   });
 
-
   console.log(resp)
-
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
   await getQuizzes()
+  showCategory()
 })
 
 
 const displayOptions = (option, index) => {
   return `
     <li>
-      <input type="radio" id="${option}" name="option" value="${option}" class="hidden peer opp" required>
+      <input type="radio" id="${option}" name="option" value="${option}" class="hidden peer radio-option" required>
       <label for="${option}"
         class="inline-flex justify-between items-center w-96 p-5 m-2 text-gray-500 bg-white rounded-lg border border-gray-200 cursor-pointer  peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100">
         <div class="block">
@@ -90,3 +162,4 @@ const displayOptions = (option, index) => {
     </li>
   `
 }
+

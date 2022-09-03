@@ -9,18 +9,22 @@
 </head>
 <body class="flex items-center justify-center flex-col">
   <section id="home">
-    <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Select an option</label>
-    <select id="countries"
+    <label for="select-category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Select Category: </label>
+    <select id="select-category"
       class="bg-gray-50 border border-gray-300 px-20 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
-      <option selected>Choose a country</option>
-      <option value="US">United States</option>
-      <option value="CA">Canada</option>
-      <option value="FR">France</option>
-      <option value="DE">Germany</option>
+      <option selected disabled>Categories</option>
     </select>
+
+    <label for="select-difficulty" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Select Difficulty:
+    </label>
+    <select id="select-difficulty"
+      class="bg-gray-50 border border-gray-300 px-20 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
+      <option selected disabled>Difficulty</option>
+    </select>
+    
   </section>
 
-  <section id="quiz-" class="">
+  <section id="quiz-" class="hidden">
     <h1 class="text-4xl font-bold">Quiz App</h1>
     <div class="box w-P1/2 p-4 rounded-md flex flex-col justify-center items-center" id="box-question">
       <div id="length"></div>
