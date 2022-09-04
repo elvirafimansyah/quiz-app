@@ -1,4 +1,5 @@
 // Home
+const sectionHome = document.getElementById("home"); 
 // * category
 const category = document.getElementById('select-category');
 const categories_data = [
@@ -56,23 +57,44 @@ function showCategory() {
   category.innerHTML += categoryE;
 }
 
-category.addEventListener("change", e => {
-  const currOptionCategory = category.options[category.selectedIndex].value;
-  console.log(currOptionCategory)
-})
 
 // *diffuculty
 const diffucult = document.getElementById("select-difficulty");
 const diff_list = ["easy", "medium", "hard"];
 const difOptionUI = (data) => {
   return`
-    <option value="${data}" >${data}</option>
+    <option value="${data}" >${data.charAt(0).toUpperCase()}${data.substr(1).toLowerCase()}</option>
   `
 }
 
 let diffE = "";
 diff_list.forEach((list) => diffE += difOptionUI(list));
 diffucult.innerHTML += diffE;
+
+
+category.addEventListener("click", async e => {
+  let currOptionCategory = category.options[category.selectedIndex].value;
+  category.dataset.value =  currOptionCategory;
+})
+diffucult.addEventListener("click", e => {
+  let currOptionDiff = diffucult.options[diffucult.selectedIndex].value;
+  diffucult.dataset.value = currOptionDiff;
+});
+
+
+//*play 
+const playBtn = document.getElementById("play-btn");
+const sectionQuiz = document.getElementById("quiz");
+
+playBtn.addEventListener("click", async () => {
+  sectionQuiz.classList.remove("hidden");
+  sectionHome.classList.add("hidden");
+
+  let categoryValues = category.dataset.value;
+  let diffucultValues = diffucult.dataset.value;
+
+  await getQuizzes(diffucultValues, categoryValues)
+})
 
 
 // Quiz Section
@@ -128,9 +150,9 @@ function updateQuestion(data, optionCard) {
 }
 
 
-async function getQuizzes() {
+async function getQuizzes(diffucult="", category="") {
   let optionCard = "";
-  let req = await fetch("https://the-trivia-api.com/api/questions?limit=5");
+  let req = await fetch(`https://the-trivia-api.com/api/questions?categories=${category}&limit=5&difficulty=${diffucult}`);
   let resp = await req.json();
 
   updateQuestion(resp, optionCard)
@@ -144,10 +166,14 @@ async function getQuizzes() {
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
-  await getQuizzes()
   showCategory()
+ 
 })
 
+function quit() {
+  window.location.reload()
+
+}
 
 const displayOptions = (option, index) => {
   return `

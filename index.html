@@ -5,26 +5,46 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.tailwindcss.com"></script> 
+  <script>
+    tailwind.config = {
+      theme: {
+        fontFamily: {
+          'body': ['Poppins']
+        },
+        extend: {
+          colors: {
+            'tosqa': '#76DCC2',
+          }
+        }
+      }
+    }
+  </script>
 </head>
-<body class="flex items-center justify-center flex-col">
+<body class="flex items-center justify-center flex-col ">
   <section id="home">
     <label for="select-category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Select Category: </label>
     <select id="select-category"
-      class="bg-gray-50 border border-gray-300 px-20 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
+      class="bg-gray-50 border border-gray-300 px-20 text-gray-900 text-sm rounded-lg focus:ring-red-400 focus:border-red-400 block w-full p-2.5 ">
       <option selected disabled>Categories</option>
     </select>
 
     <label for="select-difficulty" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Select Difficulty:
     </label>
     <select id="select-difficulty"
-      class="bg-gray-50 border border-gray-300 px-20 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
+      class="bg-gray-50 border border-gray-300 px-20 text-gray-900 text-sm rounded-lg focus:ring-red-400 focus:border-red-400 block w-full p-2.5 ">
       <option selected disabled>Difficulty</option>
     </select>
     
+    <button type="button" class="text-white bg-red-400 hover:bg-red-500  font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none w-full flex items-center justify-center my-2" id="play-btn">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16">
+        <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/>
+      </svg>&nbsp;
+      Play
+    </button>
   </section>
 
-  <section id="quiz-" class="hidden">
+  <section id="quiz" class="hidden">
     <h1 class="text-4xl font-bold">Quiz App</h1>
     <div class="box w-P1/2 p-4 rounded-md flex flex-col justify-center items-center" id="box-question">
       <div id="length"></div>
@@ -33,11 +53,16 @@
       </ul>
     </div>
     <div>
-      <button id="next-question" class="bg-green-300 p-2 rounded-md">next </button>
+      <button id="quit-btn" class="bg-red-500 p-2 rounded-md" onclick="quit()">quit</button>
+      <button id="next-question" class="bg-green-300 p-2 rounded-md">next</button>
     </div>
     <button type="submit" class="bg-indigo-400 p-2 rounded-md">submit</button>
     <h1 id="score">0</h1>
     <script src="script.js"></script>
+  </section>
+
+  <section id="end">
+    
   </section>
 </body>
 
