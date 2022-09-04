@@ -110,7 +110,7 @@ playBtn.addEventListener("click", async () => {
     nextBtn.classList.add("hidden");
     submitBtn.classList.add("hidden");
     displayScore.classList.add("hidden");
-
+    quitBtn.innerText = "try again"
   }
 
 })
@@ -176,7 +176,6 @@ async function getQuizzes(diffucult="", category="") {
 
 document.addEventListener("DOMContentLoaded", async () => {
   showCategory()
- 
 })
 
 function quit() {
