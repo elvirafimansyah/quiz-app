@@ -1,7 +1,20 @@
-// Home
+// Home Section
+const sectionQuiz = document.getElementById("quiz");
 const sectionHome = document.getElementById("home"); 
-// * category
 const category = document.getElementById('select-category');
+const diffucult = document.getElementById("select-difficulty");
+// Quiz Section
+const boxQuestion = document.querySelector("#box-question")
+const nextBtn = document.getElementById("next-question");
+const submitBtn = document.getElementById("submit-btn");
+const quitBtn = document.getElementById("quit-btn");
+const title = document.getElementById("title");
+const options = document.getElementById("options");
+const displayLength = document.getElementById("length");
+const displayScore = document.getElementById("score");
+
+// Home Function
+// * category
 const categories_data = [
   {
     name: "Arts & Literature",
@@ -59,7 +72,6 @@ function showCategory() {
 
 
 // *diffuculty
-const diffucult = document.getElementById("select-difficulty");
 const diff_list = ["easy", "medium", "hard"];
 const difOptionUI = (data) => {
   return`
@@ -74,7 +86,7 @@ diffucult.innerHTML += diffE;
 
 category.addEventListener("click", async e => {
   let currOptionCategory = category.options[category.selectedIndex].value;
-  category.dataset.value =  currOptionCategory;
+  category.dataset.value =  currOptionCategory; 
 })
 diffucult.addEventListener("click", e => {
   let currOptionDiff = diffucult.options[diffucult.selectedIndex].value;
@@ -84,7 +96,6 @@ diffucult.addEventListener("click", e => {
 
 //*play 
 const playBtn = document.getElementById("play-btn");
-const sectionQuiz = document.getElementById("quiz");
 
 playBtn.addEventListener("click", async () => {
   sectionQuiz.classList.remove("hidden");
@@ -93,20 +104,18 @@ playBtn.addEventListener("click", async () => {
   let categoryValues = category.dataset.value;
   let diffucultValues = diffucult.dataset.value;
 
-  await getQuizzes(diffucultValues, categoryValues)
+  if (categoryValues && diffucultValues !== "") {
+    await getQuizzes(diffucultValues, categoryValues)
+  } else {
+    nextBtn.classList.add("hidden");
+    submitBtn.classList.add("hidden");
+    displayScore.classList.add("hidden");
+
+  }
+
 })
 
-
-// Quiz Section
-const boxQuestion = document.querySelector("#box-question")
-const nextBtn = document.getElementById("next-question");
-const prevBtn = document.getElementById("prev-question");
-const title = document.getElementById("title");
-const options = document.getElementById("options");
-const displayLength = document.getElementById("length");
-const displayScore = document.getElementById("score");
-
-console.log(options)
+// Quiz Function
 
 let currQuiz = 0;
 let score = 0;
