@@ -1,3 +1,10 @@
+// Name Section
+const sectionName = document.getElementById("name") 
+const inputName = document.getElementById("input-name");
+const submitNameBtn = document.getElementById("submit-name");
+const displayName = document.getElementById("text-name");
+const preview = document.getElementById("preview-profile");
+const inputProfile = document.getElementById("input-profile");
 // Home Section
 const sectionQuiz = document.getElementById("quiz");
 const sectionHome = document.getElementById("home"); 
@@ -12,6 +19,38 @@ const title = document.getElementById("title");
 const options = document.getElementById("options");
 const displayLength = document.getElementById("length");
 const displayScore = document.getElementById("score");
+
+// Name Function
+submitNameBtn.addEventListener('click', () => {
+  let name = inputName.value;
+  name = name.split(" ")              // Memenggal nama menggunakan spasi
+    .map(nama =>
+      nama.charAt(0).toUpperCase() +
+      nama.slice(1))                 // Ganti huruf besar kata-kata pertama
+    .join(" "); 
+  sectionHome.classList.remove("hidden");
+  sectionName.classList.add("hidden");
+  displayName.innerHTML = `
+    <div class="flex">
+      <img src="${preview.src}" class="w-10 h-10 rounded-full"/> &nbsp; 
+      <h3>${name}</h3> 
+    </div>
+  `;
+
+  document.querySelector("body").classList.remove("my-16");
+  document.querySelector("body").classList.add("my-10");
+
+})
+
+
+function previewProfile(image) {
+  if(image.target.files.length > 0) {
+    let src = URL.createObjectURL(image.target.files[0]);
+    preview.src = src;
+    preview.style.width = '100px';
+  }
+}
+
 
 // Home Function
 // * category

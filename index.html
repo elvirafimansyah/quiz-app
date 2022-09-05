@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-full">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,38 +14,66 @@
         },
         extend: {
           colors: {
-            'tosqa': '#76DCC2',
+            'glass': 'rgb(255,255,255,0.1)',
           }
         }
       }
     }
   </script>
 </head>
-<body class="flex items-center justify-center flex-col ">
-  <section id="home">
-    <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Select Category: </label>
-    <select name="category" id="select-category" 
-      class="bg-gray-50 border border-gray-300 px-20 text-gray-900 text-sm rounded-lg focus:ring-red-400 focus:border-red-400 block w-full p-2.5 " required>
-      <option value="" selected disabled>Categories</option>
-    </select>
-
-    <label for="difficulty" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Select Difficulty:
-    </label>
-    <select name="difficulty" id="select-difficulty"
-      class="bg-gray-50 border border-gray-300 px-20 text-gray-900 text-sm rounded-lg focus:ring-red-400 focus:border-red-400 block w-full p-2.5" required>
-      <option value=""selected disabled>Difficulty</option>
-    </select>
-    
-    <button type="submit" class="text-white bg-red-400 hover:bg-red-500  font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none w-full flex items-center justify-center my-2" id="play-btn" >
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16">
-        <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/>
-      </svg>&nbsp;
-      Play
-    </button>
+<body class="my-16"style="background:  url('src/img/bg.png'); background-repeat: no-repeat; background-size: cover; ">
+  <section id="name" class=" text-white flex flex-col justify-center items-center">
+    <img src="src/img/brand.png" class="text-center mb-14" alt="brand name" width="300">
+    <div class="content-name  flex flex-col bg-glass p-10  text-center justify-center items-center border " style="border-image-slice: 1; border-image-source: linear-gradient(to left,  rgb(255,255,255,0), #fff);">
+        <div class="flex items-center mb-2">
+          <img src="https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png" alt="profile" id="preview-profile" class="w-20 h-20 rounded-full mr-2" />
+          <label for="profile" class="text-white bg-gradient-to-r from-red-400 to-red-500 hover:bg-gradient-to-br shadow-lg shadow-red-500/50  font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+            Upload Profile
+          </label>
+          <input id="profile" type="file" accept="image/*" class="hidden" onchange="previewProfile(event)">
+        </div>
+      <h2 class="text-2xl md:text-3xl pb-5 font-medium">Enter Your Name</h2>
+      <input type="text" class="focus:outline-none text-black lg:w-96 text-xl p-2  text-center mb-5 rounded-sm" id="input-name" required>
+      <button type="submit"
+        class="text-white bg-gradient-to-r from-red-400 to-red-500 hover:bg-gradient-to-br shadow-lg shadow-red-500/50  font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2" id="submit-name">Enter</button>
+    </div>
+  </section>
+  <section id="home" class="hidden flex flex-col justify-center items-center">
+    <img src="src/img/brand.png" class="text-center mb-14" alt="brand name" width="300">
+    <div class="content-name max-w-md flex flex-col bg-glass p-10  border"
+      style="border-image-slice: 1; border-image-source: linear-gradient(to left, rgb(255,255,255,0), #fff);">
+      <h1 id="text-name" class="text-white text-2xl mb-2"></h1>
+      <label for="category" class=" text-left block mb-2 text-sm font-medium text-gray-50 ">Select Category: </label>
+      <select name="category" id="select-category" 
+        class="bg-gray-50 border border-gray-300 px-20 text-gray-900 text-sm rounded-lg focus:ring-red-400 focus:border-red-400 block w-full p-2.5 " required>
+        <option value="" selected disabled>Categories</option>
+      </select>
+      <label for="difficulty" class="block mb-2 text-sm font-medium text-white ">Select Difficulty:
+      </label>
+      <select name="difficulty" id="select-difficulty"
+        class="bg-gray-50 border border-gray-300 px-20 text-gray-900 text-sm rounded-lg focus:ring-red-400 focus:border-red-400 block w-full p-2.5" required>
+        <option value=""selected disabled>Difficulty</option>
+      </select>
+      <button type="submit" class="text-white bg-red-400 hover:bg-red-500  font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none w-full flex items-center justify-center my-2" id="play-btn" >
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16">
+          <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/>
+        </svg>&nbsp;
+        Play
+      </button>
+      <button type="submit"
+          class="text-white bg-red-400 hover:bg-red-500  font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none w-full flex items-center justify-center my-2"
+          onclick="quit()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-fill"
+            viewBox="0 0 16 16">
+            <path
+              d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z" />
+          </svg>&nbsp;
+          Back
+        </button>
+    </div>
   </section>
   <section id="quiz" class="hidden">
     <h1 class="text-4xl font-bold">Quiz App</h1>
- 
     <div class="box w-P1/2 p-4 rounded-md flex flex-col justify-center items-center" id="box-question">
       <div id="length"></div>
       
@@ -65,6 +93,14 @@
   <section id="end">
 
   </section>
+  <a href="https://github.com/elvirafimansyah" target="_blank" title="github"
+    class="fixed no-underline p-1 w-10 h-10 flex items-center justify-center text-white rounded-lg bottom-8 right-8 z-10 bg-glass shadow-md">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-github"
+      viewBox="0 0 16 16">
+      <path
+        d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
+    </svg>
+  </a>
 </body>
 
 </html>
