@@ -19,6 +19,8 @@ const title = document.getElementById("title");
 const options = document.getElementById("options");
 const displayLength = document.getElementById("length");
 const displayScore = document.getElementById("score");
+const profileName = document.getElementById("profile-name")
+const profileImage = document.getElementById("profile-img");
 
 // Name Function
 submitNameBtn.addEventListener('click', () => {
@@ -35,11 +37,10 @@ submitNameBtn.addEventListener('click', () => {
       <img src="${preview.src}" class="w-10 h-10 rounded-full"/> &nbsp; 
       <h3>${name}</h3> 
     </div>
-  `;
+  `;    
 
-  document.querySelector("body").classList.remove("my-16");
-  document.querySelector("body").classList.add("my-10");
-
+  profileName.innerHTML = name + `&nbsp`; 
+  profileImage.src = preview.src;
 })
 
 
@@ -163,6 +164,10 @@ function nextQuestion(data) {
   if (currQuiz < data.length - 1) {
     currQuiz++;
     console.log(currQuiz)
+    if(currQuiz === 4) {
+      console.log("yey!");
+      submitBtn.classList.remove("hidden");
+    }
   }
 }
 
@@ -194,7 +199,7 @@ function updateQuestion(data, optionCard) {
     });
   })
 
-  displayLength.innerHTML = `${currQuiz + 1} / ${data.length}`
+  displayLength.innerHTML = `Question ${currQuiz + 1} / ${data.length}`
 }
 
 
@@ -211,6 +216,7 @@ async function getQuizzes(diffucult="", category="") {
   });
 
   console.log(resp)
+
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -227,7 +233,7 @@ const displayOptions = (option, index) => {
     <li>
       <input type="radio" id="${option}" name="option" value="${option}" class="hidden peer radio-option" required>
       <label for="${option}"
-        class="inline-flex justify-between items-center w-96 p-5 m-2 text-gray-500 bg-white rounded-lg border border-gray-200 cursor-pointer  peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100">
+        class="inline-flex justify-between  items-center w-96 p-5 m-2 text-white bg-glass-2 rounded-lg border border-gray-200 cursor-pointer peer-checked:border-red-400 peer-checked:text-red-400 hover:text-red-400 hover:bg-gray-100">
         <div class="block">
           <div class="w-full text-lg font-semibold">${option}</div>
         </div>
@@ -235,4 +241,3 @@ const displayOptions = (option, index) => {
     </li>
   `
 }
-

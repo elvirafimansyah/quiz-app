@@ -6,6 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <script src="https://cdn.tailwindcss.com"></script> 
+  <!-- Flowbite -->
+  <link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.3/dist/flowbite.min.css" />
+  <script src="https://unpkg.com/flowbite@1.5.3/dist/flowbite.js"></script>
   <script>
     tailwind.config = {
       theme: {
@@ -15,14 +18,16 @@
         extend: {
           colors: {
             'glass': 'rgb(255,255,255,0.1)',
+            'glass-2': 'rgb(255,255,255,0.2)',
+            'salmon': "#F87171"
           }
         }
       }
     }
   </script>
 </head>
-<body class="my-16"style="background:  url('src/img/bg.png'); background-repeat: no-repeat; background-size: cover; ">
-  <section id="name" class=" text-white flex flex-col justify-center items-center">
+<body  style="background: url('src/img/bg.png'); background-repeat: no-repeat; background-size: cover; height: 100%">
+  <section id="name" class="my-16 text-white flex flex-col justify-center items-center " >
     <img src="src/img/brand.png" class="text-center mb-14" alt="brand name" width="300">
     <div class="content-name  flex flex-col bg-glass p-10  text-center justify-center items-center border " style="border-image-slice: 1; border-image-source: linear-gradient(to left,  rgb(255,255,255,0), #fff);">
         <div class="flex items-center mb-2">
@@ -38,7 +43,7 @@
         class="text-white bg-gradient-to-r from-red-400 to-red-500 hover:bg-gradient-to-br shadow-lg shadow-red-500/50  font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2" id="submit-name">Enter</button>
     </div>
   </section>
-  <section id="home" class="hidden flex flex-col justify-center items-center">
+  <section id="home" class=" my-10 flex flex-col justify-center items-center hidden">
     <img src="src/img/brand.png" class="text-center mb-14" alt="brand name" width="300">
     <div class="content-name max-w-md flex flex-col bg-glass p-10  border"
       style="border-image-slice: 1; border-image-source: linear-gradient(to left, rgb(255,255,255,0), #fff);">
@@ -72,21 +77,51 @@
         </button>
     </div>
   </section>
-  <section id="quiz" class="hidden">
-    <h1 class="text-4xl font-bold">Quiz App</h1>
-    <div class="box w-P1/2 p-4 rounded-md flex flex-col justify-center items-center" id="box-question">
-      <div id="length"></div>
-      
-      <div id="title"></div>
-      <ul class="flex flex-col items-center justify-centers" id="options">
-      </ul>
+  <section id="quiz" class="lg:my-2 lg:mx-4 ">
+    <nav class="shadow-sm shadow-gray-100 px-2 sm:px-4 py-2.5 rounded-lg bg-glass" >
+      <div class="container flex flex-wrap justify-between items-center mx-auto">
+        <div class="flex items-center">
+          <img src="src/img/brand.png" class="mr-3 h-6 sm:h-9"  alt="Quiz Logo">
+        </div>
+        <div class="flex items-center md:order-2">
+          <h1 class="text-white" id="profile-name">&nbsp;</h1>
+          <button type="button"
+            class="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+            id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown"
+            data-dropdown-placement="bottom">
+            <span class="sr-only">Open user menu</span>
+            <img class="w-8 h-8 rounded-full" src="src/img/brand.png" id="profile-img" alt="user photo">
+          </button>
+      </div>
+    </nav>
+
+
+    <div class="box rounded-xl flex flex-col justify-center items-center bg-glass mt-3 " id="box-question " >
+      <div class="bg-salmon w-full flex items-center text-white py-3 px-5 justify-between rounded-t-lg ">
+        <div class="flex items-center">
+          <img src="src/img/cat-icon.png" class="w-6 h-6 mr-2" alt="category icon"> 
+          <h3 class="font-medium">Geography</h3>
+          <span class="bg-glass py-1 px-4 rounded-lg ml-2">Medium</span>
+        </div>
+        
+        <div id="length" class="font-medium">Question 2/20</div>
+      </div>
+      <div class="p-6">
+        <div id="title" class="text-white text-center font-semibold text-2xl mb-6"></div>
+        <ul class="flex flex-col items-center justify-centers" id="options">
+        </ul>
+        <div class="flex">
+          <button id="quit-btn" class="bg-red-500 p-2 rounded-md" onclick="quit()">quit</button>
+          <button id="next-question" class="text-white bg-gradient-to-r from-red-400 to-red-500 hover:bg-gradient-to-br shadow-lg shadow-red-500/50  font-medium rounded-lg text-sm px-5 py-2.5 text-center flex items-center">Next Question &nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right"
+            viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
+          </svg></button>
+          <button type="submit" class="bg-indigo-400 p-2 rounded-md hidden" id="submit-btn">submit</button>
+        </div>
+        <h1 id="score">0</h1>
+      </div>
     </div>
-    <div>
-      <button id="quit-btn" class="bg-red-500 p-2 rounded-md" onclick="quit()">quit</button>
-      <button id="next-question" class="bg-green-300 p-2 rounded-md">next</button>
-    </div>
-    <button type="submit" class="bg-indigo-400 p-2 rounded-md" id="submit-btn">submit</button>
-    <h1 id="score">0</h1>
     <script src="script.js"></script>
   </section>
 
