@@ -25,7 +25,8 @@ const displayCategory = document.getElementById("display-category");
 const displayDiffuculty = document.getElementById("display-diffuculty");
 // Score Section
 const sectionScore = document.getElementById("score-page");
-
+const wtf = document.querySelector("#wtf");
+console.log(wtf)
 // Name Function
 submitNameBtn.addEventListener('click', () => {
   let name = inputName.value;
@@ -45,6 +46,7 @@ submitNameBtn.addEventListener('click', () => {
 
   profileName.innerHTML = name + `&nbsp`; 
   profileImage.src = preview.src;
+  scoreProfileImage.src = preview.src;
 })
 
 
@@ -231,8 +233,6 @@ async function getQuizzes(diffucult="", category="") {
 
 submitBtn.addEventListener("click", () => {
   sectionQuiz.classList.add("hidden");
-  sectionScore.classList.remove("hidden");
-  document.querySelector("body").style.background = `#000`;
 });
 
 document.addEventListener("DOMContentLoaded", async () => {
