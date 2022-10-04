@@ -21,6 +21,10 @@ const displayLength = document.getElementById("length");
 const displayScore = document.getElementById("score");
 const profileName = document.getElementById("profile-name")
 const profileImage = document.getElementById("profile-img");
+const displayCategory = document.getElementById("display-category");
+const displayDiffuculty = document.getElementById("display-diffuculty");
+// Score Section
+const sectionScore = document.getElementById("score-page");
 
 // Name Function
 submitNameBtn.addEventListener('click', () => {
@@ -100,7 +104,7 @@ const categories_data = [
 
 const categoryOptions = (data) => {
   return `
-    <option value="${data.category}" >${data.name}</option>
+    <option value="${data.category}" data-name="${data.name}">${data.name}</option>
   `
 }
 
@@ -124,13 +128,16 @@ diff_list.forEach((list) => diffE += difOptionUI(list));
 diffucult.innerHTML += diffE;
 
 
-category.addEventListener("click", async e => {
+category.addEventListener("click", async () => {
   let currOptionCategory = category.options[category.selectedIndex].value;
-  category.dataset.value =  currOptionCategory; 
+  const currOptionNameCategory = category.options[category.selectedIndex].dataset.name;
+  category.dataset.value =  currOptionNameCategory;
+  displayCategory.innerHTML = currOptionNameCategory;
 })
-diffucult.addEventListener("click", e => {
+diffucult.addEventListener("click", () => {
   let currOptionDiff = diffucult.options[diffucult.selectedIndex].value;
   diffucult.dataset.value = currOptionDiff;
+  displayDiffuculty.innerHTML = currOptionDiff;
 });
 
 
@@ -143,6 +150,8 @@ playBtn.addEventListener("click", async () => {
 
   let categoryValues = category.dataset.value;
   let diffucultValues = diffucult.dataset.value;
+
+  // displayCategory.innerHTML = category.options[category.selectedIndex].value;
 
   if (categoryValues && diffucultValues !== "") {
     await getQuizzes(diffucultValues, categoryValues)
@@ -166,6 +175,7 @@ function nextQuestion(data) {
     console.log(currQuiz)
     if(currQuiz === 4) {
       console.log("yey!");
+      nextBtn.classList.add("hidden");
       submitBtn.classList.remove("hidden");
     }
   }
@@ -219,8 +229,15 @@ async function getQuizzes(diffucult="", category="") {
 
 }
 
+submitBtn.addEventListener("click", () => {
+  sectionQuiz.classList.add("hidden");
+  sectionScore.classList.remove("hidden");
+  document.querySelector("body").style.background = `#000`;
+});
+
 document.addEventListener("DOMContentLoaded", async () => {
   showCategory()
+  inputName.focus()
 })
 
 function quit() {
