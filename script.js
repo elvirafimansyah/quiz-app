@@ -20,13 +20,12 @@ const options = document.getElementById("options");
 const displayLength = document.getElementById("length");
 const displayScore = document.getElementById("score");
 const profileName = document.getElementById("profile-name")
-const profileImage = document.getElementById("profile-img");
+const profileImage = document.querySelectorAll("#profile-img");
 const displayCategory = document.getElementById("display-category");
 const displayDiffuculty = document.getElementById("display-diffuculty");
 // Score Section
-const sectionScore = document.getElementById("score-page");
-const wtf = document.querySelector("#wtf");
-console.log(wtf)
+const sectionScore = document.getElementById("end");
+
 // Name Function
 submitNameBtn.addEventListener('click', () => {
   let name = inputName.value;
@@ -44,9 +43,11 @@ submitNameBtn.addEventListener('click', () => {
     </div>
   `;    
 
-  profileName.innerHTML = name + `&nbsp`; 
-  profileImage.src = preview.src;
-  scoreProfileImage.src = preview.src;
+  profileName.innerHTML = name + `&nbsp`;
+  for(let i =0; i < profileImage.length; i++) {
+    profileImage[i].src = preview.src;
+  } 
+
 })
 
 
@@ -237,7 +238,7 @@ submitBtn.addEventListener("click", () => {
 
 document.addEventListener("DOMContentLoaded", async () => {
   showCategory()
-  inputName.focus()
+  inputName.focus();
 })
 
 function quit() {
