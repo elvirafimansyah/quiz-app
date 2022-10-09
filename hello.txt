@@ -1,1 +1,6 @@
 hello: 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
+
+score endpage:
+  - jika score di atas 14 akan mendapatkan gambar emoji suka
+  - tapi jika score di bawah 14 akan mendapatkan gambar emoji sad
+

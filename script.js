@@ -25,6 +25,21 @@ const displayCategory = document.getElementById("display-category");
 const displayDiffuculty = document.getElementById("display-diffuculty");
 // Score Section
 const sectionScore = document.getElementById("end");
+const scoreName = document.getElementById("score-name");
+
+// Music Function
+const musicBtn =document.getElementById("music-btn");
+musicBtn.addEventListener("click", () => {
+  const musicAudio = document.getElementById("music-audio");
+  const musicIcon = document.getElementById("music-icon")
+  if(musicAudio.paused) {
+    musicAudio.play();
+    musicIcon.src = "src/img/volume.png"
+  } else {
+    musicAudio.pause();
+    musicIcon.src = "src/img/volume-mute.png"
+  }
+})
 
 // Name Function
 submitNameBtn.addEventListener('click', () => {
@@ -43,11 +58,11 @@ submitNameBtn.addEventListener('click', () => {
     </div>
   `;    
 
-  profileName.innerHTML = name + `&nbsp`;
   for(let i =0; i < profileImage.length; i++) {
     profileImage[i].src = preview.src;
   } 
-
+  profileName.innerHTML = name + `&nbsp`;
+  scoreName.innerHTML = name 
 })
 
 
@@ -207,7 +222,7 @@ function updateQuestion(data, optionCard) {
       if (data[currQuiz].correctAnswer === value) {
         score++;
         e.disabled = true;
-        displayScore.innerHTML = score;
+        displayScore.innerHTML = `${score} / ${data.length}` ;
       }
     });
   })
@@ -234,6 +249,7 @@ async function getQuizzes(diffucult="", category="") {
 
 submitBtn.addEventListener("click", () => {
   sectionQuiz.classList.add("hidden");
+  sectionScore.classList.remove("hidden")
 });
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -259,3 +275,4 @@ const displayOptions = (option, index) => {
     </li>
   `
 }
+
