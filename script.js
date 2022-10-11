@@ -5,17 +5,20 @@ const submitNameBtn = document.getElementById("submit-name");
 const displayName = document.getElementById("text-name");
 const preview = document.getElementById("preview-profile");
 const inputProfile = document.getElementById("input-profile");
+const formName = document.getElementById("form-name");
 // Home Section
 const sectionQuiz = document.getElementById("quiz");
 const sectionHome = document.getElementById("home"); 
 const category = document.getElementById('select-category');
 const diffucult = document.getElementById("select-difficulty");
+const limit = document.getElementById("input-limit");
+const formPlay = document.getElementById("form-")
 // Quiz Section
 const boxQuestion = document.querySelector("#box-question")
 const nextBtn = document.getElementById("next-question");
 const submitBtn = document.getElementById("submit-btn");
 const quitBtn = document.getElementById("quit-btn");
-const title = document.getElementById("title");
+const title = document.getElementById("title"); 
 const options = document.getElementById("options");
 const displayLength = document.getElementById("length");
 const displayScore = document.getElementById("score");
@@ -23,6 +26,7 @@ const profileName = document.getElementById("profile-name")
 const profileImage = document.querySelectorAll("#profile-img");
 const displayCategory = document.getElementById("display-category");
 const displayDiffuculty = document.getElementById("display-diffuculty");
+const modalText = document.getElementById("popup-text")
 // Score Section
 const sectionScore = document.getElementById("end");
 const scoreName = document.getElementById("score-name");
@@ -42,30 +46,6 @@ musicBtn.addEventListener("click", () => {
 })
 
 // Name Function
-submitNameBtn.addEventListener('click', () => {
-  let name = inputName.value;
-  name = name.split(" ")              // Memenggal nama menggunakan spasi
-    .map(nama =>
-      nama.charAt(0).toUpperCase() +
-      nama.slice(1))                 // Ganti huruf besar kata-kata pertama
-    .join(" "); 
-  sectionHome.classList.remove("hidden");
-  sectionName.classList.add("hidden");
-  displayName.innerHTML = `
-    <div class="flex">
-      <img src="${preview.src}" class="w-10 h-10 rounded-full"/> &nbsp; 
-      <h3>${name}</h3> 
-    </div>
-  `;    
-
-  for(let i =0; i < profileImage.length; i++) {
-    profileImage[i].src = preview.src;
-  } 
-  profileName.innerHTML = name + `&nbsp`;
-  scoreName.innerHTML = name 
-})
-
-
 function previewProfile(image) {
   if(image.target.files.length > 0) {
     let src = URL.createObjectURL(image.target.files[0]);
@@ -74,6 +54,29 @@ function previewProfile(image) {
   }
 }
 
+formName.addEventListener('submit', e => {
+  e.preventDefault()
+  let name = inputName.value;
+  name = name.split(" ")              // Memenggal nama menggunakan spasi
+    .map(nama =>
+      nama.charAt(0).toUpperCase() +
+      nama.slice(1))                 // Ganti huruf besar kata-kata pertama
+    .join(" ");
+  sectionHome.classList.remove("hidden");
+  sectionName.classList.add("hidden");
+  displayName.innerHTML = `
+    <div class="flex">
+      <img src="${preview.src}" class="w-10 h-10 rounded-full"/> &nbsp; 
+      <h3>${name}</h3> 
+    </div>
+  `;
+
+  for (let i = 0; i < profileImage.length; i++) {
+    profileImage[i].src = preview.src;
+  }
+  profileName.innerHTML = name + `&nbsp`;
+  scoreName.innerHTML = name
+})
 
 // Home Function
 // * category
@@ -168,16 +171,17 @@ playBtn.addEventListener("click", async () => {
 
   let categoryValues = category.dataset.value;
   let diffucultValues = diffucult.dataset.value;
-
+  const limitValues = limit.value; 
   // displayCategory.innerHTML = category.options[category.selectedIndex].value;
 
   if (categoryValues && diffucultValues !== "") {
-    await getQuizzes(diffucultValues, categoryValues)
+    await getQuizzes(diffucultValues, categoryValues, limitValues)
   } else {
     nextBtn.classList.add("hidden");
     submitBtn.classList.add("hidden");
     displayScore.classList.add("hidden");
-    quitBtn.innerText = "try again"
+    quitBtn.innerText = "try again";
+    modalText.innerText = "Are you sure you want to try again?"
   }
 
 })
@@ -231,9 +235,9 @@ function updateQuestion(data, optionCard) {
 }
 
 
-async function getQuizzes(diffucult="", category="") {
+async function getQuizzes(diffucult="", category="", limit=0) {
   let optionCard = "";
-  let req = await fetch(`https://the-trivia-api.com/api/questions?categories=${category}&limit=5&difficulty=${diffucult}`);
+  let req = await fetch(`https://the-trivia-api.com/api/questions?categories=${category}&limit=${limit}&difficulty=${diffucult}`);
   let resp = await req.json();
 
   updateQuestion(resp, optionCard)
