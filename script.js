@@ -12,7 +12,7 @@ const sectionHome = document.getElementById("home");
 const category = document.getElementById('select-category');
 const diffucult = document.getElementById("select-difficulty");
 const limit = document.getElementById("input-limit");
-const formPlay = document.getElementById("form-")
+const formPlay = document.getElementById("formPlay")
 // Quiz Section
 const boxQuestion = document.querySelector("#box-question")
 const nextBtn = document.getElementById("next-question");
@@ -165,7 +165,8 @@ diffucult.addEventListener("click", () => {
 //*play 
 const playBtn = document.getElementById("play-btn");
 
-playBtn.addEventListener("click", async () => {
+formPlay.addEventListener("submit", async (e) => {
+  e.preventDefault()
   sectionQuiz.classList.remove("hidden");
   sectionHome.classList.add("hidden");
 

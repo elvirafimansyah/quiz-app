@@ -71,7 +71,7 @@
         <option value=""selected disabled>Difficulty</option>
       </select>
       <label for="limit" class="block mb-2 text-sm font-medium text-white ">Select Limit:
-      <input name="limit" type="number" class="focus:outline-none text-black font-light  text-center text-xl p-2  mb-5 rounded-sm w-full rounded-md" id="input-limit" max="20"
+      <input name="limit" type="number" class="focus:outline-none text-black font-light  text-center text-xl p-2   rounded-sm w-full rounded-md" id="input-limit" max="20"
         required>
       <button type="submit" class="text-white bg-red-400 hover:bg-red-500  font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none w-full flex items-center justify-center my-2" id="play-btn" >
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16">
@@ -172,7 +172,7 @@
             <path fill-rule="evenodd"
               d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
           </svg></button>
-          <button type="submit" class="text-white bg-gradient-to-r from-red-400 to-red-500 hover:bg-gradient-to-br shadow-lg shadow-red-500/50  font-medium rounded-lg text-sm px-5 py-2.5 text-center flex items-center hidden" id="submit-btn">Submit</button>
+          <button type="button" class="text-white bg-gradient-to-r from-red-400 to-red-500 hover:bg-gradient-to-br shadow-lg shadow-red-500/50  font-medium rounded-lg text-sm px-5 py-2.5 text-center flex items-center hidden" id="submit-btn">Submit</button>
         </div>
       </div>
     </div>
@@ -180,13 +180,16 @@
   </section>
   
   <section id="end" class="flex justify-center items-center">
-    <div class="flex bg-glass w-2/5 p-10 text-center  flex justify-center items-center flex-col border" style="border-image-slice: 1; border-image-source: linear-gradient(to left,  rgb(255,255,255,0), #fff);" >
-      <h1 class="text-2xl font-bold text-white">Quiz Result</h1>
-      <img src="src/img/bg.png" alt="profile"
-      class="w-24 h-24 rounded-full border-2 border-salmon" id="profile-img"/>
-      <h3 id="score-names" class="text-xl font-medium text-gray-100">User WTF</h3>
-      <h3 class="text-gray-300 text-lg font-medium">YOUR SCORE</h3>
-      <h1 class="text-2xl font-medium text-salmon text-center"id="score">0/20</h1>
+    <div class="flex bg-glass w-full   lg:w-2/5 p-10 text-center  flex justify-center items-center flex-col border" style="border-image-slice: 1; border-image-source: linear-gradient(to left, rgb(255,255,255,0), #fff);" >
+      <div>
+        <img src="src/img/bg.png" alt="profile"
+        class="w-24 h-24 rounded-full border-2 border-salmon" id="profile-img"/>
+        <h3 id="score-names" class="text-xl font-medium text-gray-100">User WTF</h3>
+      </div>
+      <div class="bg-glass w-32 h-32 rounded-full  flex items-center justify-center flex-col ">
+        <h3 class="text-salmon font-medium text-2xl" id="score">0</h3>
+        <h1 class="text-xl font-medium text-white text-center">Out Of 20</h1>
+      </div>
       <button type="button" class="text-white bg-gradient-to-r from-red-400 to-red-500 hover:bg-gradient-to-br shadow-lg shadow-red-500/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 " onclick="quit()">Play Again</button>
     </div>
   </section>
