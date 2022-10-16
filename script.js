@@ -1,5 +1,5 @@
 // Name Section
-const sectionName = document.getElementById("name") 
+const sectionName = document.getElementById("name")
 const inputName = document.getElementById("input-name");
 const submitNameBtn = document.getElementById("submit-name");
 const displayName = document.getElementById("text-name");
@@ -8,7 +8,7 @@ const inputProfile = document.getElementById("input-profile");
 const formName = document.getElementById("form-name");
 // Home Section
 const sectionQuiz = document.getElementById("quiz");
-const sectionHome = document.getElementById("home"); 
+const sectionHome = document.getElementById("home");
 const category = document.getElementById('select-category');
 const diffucult = document.getElementById("select-difficulty");
 const limit = document.getElementById("input-limit");
@@ -18,7 +18,7 @@ const boxQuestion = document.querySelector("#box-question")
 const nextBtn = document.getElementById("next-question");
 const submitBtn = document.getElementById("submit-btn");
 const quitBtn = document.getElementById("quit-btn");
-const title = document.getElementById("title"); 
+const title = document.getElementById("title");
 const options = document.getElementById("options");
 const displayLength = document.getElementById("length");
 const displayScore = document.getElementById("score");
@@ -32,11 +32,11 @@ const sectionScore = document.getElementById("end");
 const scoreName = document.getElementById("score-name");
 
 // Music Function
-const musicBtn =document.getElementById("music-btn");
+const musicBtn = document.getElementById("music-btn");
 musicBtn.addEventListener("click", () => {
   const musicAudio = document.getElementById("music-audio");
   const musicIcon = document.getElementById("music-icon")
-  if(musicAudio.paused) {
+  if (musicAudio.paused) {
     musicAudio.play();
     musicIcon.src = "src/img/volume.png"
   } else {
@@ -47,7 +47,7 @@ musicBtn.addEventListener("click", () => {
 
 // Name Function
 function previewProfile(image) {
-  if(image.target.files.length > 0) {
+  if (image.target.files.length > 0) {
     let src = URL.createObjectURL(image.target.files[0]);
     preview.src = src;
     preview.style.width = '100px';
@@ -75,7 +75,7 @@ formName.addEventListener('submit', e => {
     profileImage[i].src = preview.src;
   }
   profileName.innerHTML = name + `&nbsp`;
-  scoreName.innerHTML = name
+  // scoreName.innerHTML = name;
 })
 
 // Home Function
@@ -100,7 +100,7 @@ const categories_data = [
   {
     name: "Geography",
     category: "geography"
-  }, 
+  },
   {
     name: "History",
     category: "history"
@@ -139,7 +139,7 @@ function showCategory() {
 // *diffuculty
 const diff_list = ["easy", "medium", "hard"];
 const difOptionUI = (data) => {
-  return`
+  return `
     <option value="${data}" >${data.charAt(0).toUpperCase()}${data.substr(1).toLowerCase()}</option>
   `
 }
@@ -152,7 +152,7 @@ diffucult.innerHTML += diffE;
 category.addEventListener("click", async () => {
   let currOptionCategory = category.options[category.selectedIndex].value;
   const currOptionNameCategory = category.options[category.selectedIndex].dataset.name;
-  category.dataset.value =  currOptionNameCategory;
+  category.dataset.value = currOptionNameCategory;
   displayCategory.innerHTML = currOptionNameCategory;
 })
 diffucult.addEventListener("click", () => {
@@ -172,7 +172,7 @@ formPlay.addEventListener("submit", async (e) => {
 
   let categoryValues = category.dataset.value;
   let diffucultValues = diffucult.dataset.value;
-  const limitValues = limit.value; 
+  const limitValues = limit.value;
   // displayCategory.innerHTML = category.options[category.selectedIndex].value;
 
   if (categoryValues && diffucultValues !== "") {
@@ -184,25 +184,23 @@ formPlay.addEventListener("submit", async (e) => {
     quitBtn.innerText = "try again";
     modalText.innerText = "Are you sure you want to try again?"
   }
-
 })
 
 // Quiz Function
-
 let currQuiz = 0;
 let score = 0;
 
 function nextQuestion(data) {
   if (currQuiz < data.length - 1) {
-    currQuiz++;
+    currQuiz++
     console.log(currQuiz)
-    if(currQuiz === 4) {
-      console.log("yey!");
-      nextBtn.classList.add("hidden");
-      submitBtn.classList.remove("hidden");
-    }
+  } else if (currQuiz === data.length - 1) {
+    console.log("yey!");
+    nextBtn.classList.add("hidden");
+    submitBtn.classList.remove("hidden");
   }
 }
+
 
 const displayQuestion = (quiz) => {
   return `
@@ -211,13 +209,12 @@ const displayQuestion = (quiz) => {
 }
 
 
-function updateQuestion(data, optionCard) {
+function updateQuestion(data, optionCard, amount) {
   const randomOption = [data[currQuiz].correctAnswer, ...data[currQuiz].incorrectAnswers].sort(() => Math.random() - 0.5);
 
   title.innerHTML = displayQuestion(data);
   randomOption.forEach((option, i) => optionCard += displayOptions(option, i));
   options.innerHTML = optionCard;
-
 
   const eOption = document.querySelectorAll(".radio-option");
 
@@ -227,21 +224,21 @@ function updateQuestion(data, optionCard) {
       if (data[currQuiz].correctAnswer === value) {
         score++;
         e.disabled = true;
-        displayScore.innerHTML = `${score} / ${data.length}` ;
+        displayScore.innerHTML = `${score} / ${amount}`;
       }
     });
   })
-
-  displayLength.innerHTML = `Question ${currQuiz + 1} / ${data.length}`
+  displayLength.innerHTML = `${currQuiz + 1} / ${amount}`
 }
 
 
-async function getQuizzes(diffucult="", category="", limit=0) {
+
+async function getQuizzes(diffucult = "", category = "", limit = 0) {
   let optionCard = "";
   let req = await fetch(`https://the-trivia-api.com/api/questions?categories=${category}&limit=${limit}&difficulty=${diffucult}`);
   let resp = await req.json();
 
-  updateQuestion(resp, optionCard)
+  updateQuestion(resp, optionCard, resp.length)
 
   nextBtn.addEventListener("click", () => {
     nextQuestion(resp);
