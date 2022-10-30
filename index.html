@@ -111,7 +111,7 @@
       <div class="bg-salmon w-full flex items-center text-white py-3 px-5 justify-between rounded-t-lg ">
         <div class="flex items-center">
           <img src="src/img/cat-icon.png" class="w-6 h-6 mr-2" alt="category icon"> 
-          <h3 class="font-medium " id="display-category">DNF</h3>
+          <h3 class="font-medium" id="display-category">DNF</h3>
           <span class="bg-glass py-1 px-4 rounded-lg ml-2 capitalize" id="display-diffuculty" >DNF</span>
         </div>
         
@@ -181,13 +181,34 @@
   
   <section id="end" class="flex justify-center items-center">
     <div class="flex bg-glass w-full lg:w-2/5  text-center  flex justify-center items-center flex-col border" style="border-image-slice: 1; border-image-source: linear-gradient(to left, rgb(255,255,255,0), #fff);" >
-      <div class="bg-salmon h-1/2 w-full">
+      <div class="bg-salmon h-1/2 w-full rounded-b-2xl">
         <h1>Quiz Result</h1>
-        <div class="circle">
-          <h1 >48%</h1>
+        <div class="circle rounded-full bg-white w-36 h-36 flex justify-center items-center flex-col  border-[#F98D8D]" style="border-width: 15px;">
+          <h1 class="text-salmon text-2xl font-semibold">48%</h1>
           <span>Your Score</span>
         </div>
       </div>
+      <div class="button-botttom flex justify-around ">
+        <div class="flex flex-col items-center hover:cursor-pointer playagain-btn" onclick="quit()">
+          <button type="button" class="text-white rounded-full bg-gradient-to-r from-red-400 to-red-500 hover:bg-gradient-to-br shadow-lg shadow-red-500/50 w-12 h-12 flex justify-center items-center flex-col mb-1"
+            ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+              class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z" />
+              <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z" />
+            </svg></button>
+          <span class="text-gray-100 font-medium">Play Again</span>
+        </div>
+        <div class="flex flex-col items-center hover:cursor-pointer playagain-btn" onclick="quit()">
+          <button type="button"
+            class="text-white rounded-full bg-indigo-600 w-12 h-12 flex justify-center items-center flex-col mb-1"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-share-fill"
+              viewBox="0 0 16 16">
+              <path
+                d="M11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5z" />
+            </svg></button>
+          <span class="text-gray-100 font-medium">Share</span>
+        </div>
+      </div>
+
       <!-- <div >
         <img src="src/img/bg.png" alt="profile"
         class="w-24 h-24 rounded-full border-2 border-salmon" id="profile-img"/>

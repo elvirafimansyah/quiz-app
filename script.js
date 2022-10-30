@@ -54,6 +54,22 @@ function previewProfile(image) {
   }
 }
 
+
+function urlParamater(name) {
+  var chars = "0123456789abcdefghijklmnopqrstuvwxyz!@#$%^&*()ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  var idLength = 5;
+  var id = "";
+  for (var i = 0; i <= idLength; i++) {
+    var randomNumber = Math.floor(Math.random() * chars.length);
+    id += chars.substring(randomNumber, randomNumber + 1);
+  }
+  const params = new URLSearchParams(location.search);
+  params.set(`name`, `${name}`)
+  params.set(`id`, `${id}`)
+  window.history.replaceState({}, '', location.pathname + '?' + params);
+}
+
+
 formName.addEventListener('submit', e => {
   e.preventDefault()
   let name = inputName.value;
@@ -75,8 +91,12 @@ formName.addEventListener('submit', e => {
     profileImage[i].src = preview.src;
   }
   profileName.innerHTML = name + `&nbsp`;
-  // scoreName.innerHTML = name;
+
+  urlParamater(name)
 })
+
+
+
 
 // // Home Function
 // // * category
@@ -150,7 +170,7 @@ diffucult.innerHTML += diffE;
 category.addEventListener("click", async () => {
   let currOptionCategory = category.options[category.selectedIndex].value;
   const currOptionNameCategory = category.options[category.selectedIndex].dataset.name;
-  category.dataset.value = currOptionNameCategory;
+  category.dataset.value = currOptionCategory;
   displayCategory.innerHTML = currOptionNameCategory;
 })
 diffucult.addEventListener("click", () => {
@@ -170,7 +190,6 @@ playBtn.addEventListener("click", async () => {
   let categoryValues = category.dataset.value;
   let diffucultValues = diffucult.dataset.value;
   let limitValues = limit.value;
-  displayCategory.innerHTML = category.options[category.selectedIndex].value;
 
   if (categoryValues && diffucultValues !== "") {
     await getQuizzes(diffucultValues, categoryValues, limitValues)
@@ -213,18 +232,18 @@ function updateQuestion(data, optionCard, amount) {
   randomOption.forEach((option, i) => optionCard += displayOptions(option, i));
   options.innerHTML = optionCard;
 
-  // const eOption = document.querySelectorAll(".radio-option");
+  const eOption = document.querySelectorAll(".radio-option");
 
-  // eOption.forEach((e) => {
-  //   e.addEventListener("click", e => {
-  //     const value = e.target.value;
-  //     if (data[currQuiz].correctAnswer === value) {
-  //       score++;
-  //       e.disabled = true;
-  //       displayScore.innerHTML = `${score} / ${amount}`;
-  //     }
-  //   });
-  // })
+  eOption.forEach((e) => {
+    e.addEventListener("click", e => {
+      const value = e.target.value;
+      if (data[currQuiz].correctAnswer === value) {
+        score++;
+        e.disabled = true;
+        displayScore.innerHTML = `${score} / ${amount}`;
+      }
+    });
+  })
 
 
   displayLength.innerHTML = `${currQuiz + 1} / ${amount}`
@@ -247,6 +266,7 @@ async function getQuizzes(diffucult = "", category = "", limit) {
 }
 
 submitBtn.addEventListener("click", () => {
+  
   sectionQuiz.classList.add("hidden");
   sectionScore.classList.remove("hidden")
 });
@@ -273,3 +293,4 @@ const displayOptions = (option, index) => {
     </li>
   `
 }
+
