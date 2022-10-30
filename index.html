@@ -56,7 +56,7 @@
   </section>
   <section id="home" class=" my-10 flex flex-col justify-center items-center ">
     <img src="src/img/brand.png" class="text-center mb-14" alt="brand name" width="300">
-    <form class="content-name max-w-md flex flex-col bg-glass p-10 border"
+    <div class="content-name max-w-md flex flex-col bg-glass p-10 border"
       style="border-image-slice: 1; border-image-source: linear-gradient(to left, rgb(255,255,255,0), #fff);" id="formPlay">
       <h1 id="text-name" class="text-white text-2xl mb-2"></h1>
       <label for="category" class=" text-left block mb-2 text-sm font-medium text-gray-50 ">Select Category: </label>
@@ -73,7 +73,7 @@
       <label for="limit" class="block mb-2 text-sm font-medium text-white ">Select Limit:
       <input name="limit" type="number" class="focus:outline-none text-black font-light  text-center text-xl p-2   rounded-sm w-full rounded-md" id="input-limit" max="20"
         required>
-      <button type="submit" class="text-white bg-red-400 hover:bg-red-500  font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none w-full flex items-center justify-center my-2" id="play-btn" >
+      <button type="button" class="text-white bg-red-400 hover:bg-red-500  font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none w-full flex items-center justify-center my-2" id="play-btn" >
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16">
           <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/>
         </svg>&nbsp;
@@ -180,8 +180,15 @@
   </section>
   
   <section id="end" class="flex justify-center items-center">
-    <div class="flex bg-glass w-full   lg:w-2/5 p-10 text-center  flex justify-center items-center flex-col border" style="border-image-slice: 1; border-image-source: linear-gradient(to left, rgb(255,255,255,0), #fff);" >
-      <div>
+    <div class="flex bg-glass w-full lg:w-2/5  text-center  flex justify-center items-center flex-col border" style="border-image-slice: 1; border-image-source: linear-gradient(to left, rgb(255,255,255,0), #fff);" >
+      <div class="bg-salmon h-1/2 w-full">
+        <h1>Quiz Result</h1>
+        <div class="circle">
+          <h1 >48%</h1>
+          <span>Your Score</span>
+        </div>
+      </div>
+      <!-- <div >
         <img src="src/img/bg.png" alt="profile"
         class="w-24 h-24 rounded-full border-2 border-salmon" id="profile-img"/>
         <h3 id="score-names" class="text-xl font-medium text-gray-100">User WTF</h3>
@@ -190,7 +197,7 @@
         <h3 class="text-salmon font-medium text-2xl" id="score">0</h3>
         <h1 class="text-xl font-medium text-white text-center">Out Of 20</h1>
       </div>
-      <button type="button" class="text-white bg-gradient-to-r from-red-400 to-red-500 hover:bg-gradient-to-br shadow-lg shadow-red-500/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 " onclick="quit()">Play Again</button>
+      <button type="button" class="text-white bg-gradient-to-r from-red-400 to-red-500 hover:bg-gradient-to-br shadow-lg shadow-red-500/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 " onclick="quit()">Play Again</button> -->
     </div>
   </section>
   <!-- Music Button -->

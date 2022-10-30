@@ -78,8 +78,8 @@ formName.addEventListener('submit', e => {
   // scoreName.innerHTML = name;
 })
 
-// Home Function
-// * category
+// // Home Function
+// // * category
 const categories_data = [
   {
     name: "Arts & Literature",
@@ -129,11 +129,9 @@ const categoryOptions = (data) => {
   `
 }
 
-function showCategory() {
-  let categoryE = "";
-  categories_data.forEach(data => categoryE += categoryOptions(data));
-  category.innerHTML += categoryE;
-}
+let categoryE = "";
+categories_data.forEach(data => categoryE += categoryOptions(data));
+category.innerHTML += categoryE;
 
 
 // *diffuculty
@@ -162,18 +160,17 @@ diffucult.addEventListener("click", () => {
 });
 
 
-//*play 
+// //*play 
 const playBtn = document.getElementById("play-btn");
 
-formPlay.addEventListener("submit", async (e) => {
-  e.preventDefault()
+playBtn.addEventListener("click", async () => {
   sectionQuiz.classList.remove("hidden");
   sectionHome.classList.add("hidden");
 
   let categoryValues = category.dataset.value;
   let diffucultValues = diffucult.dataset.value;
-  const limitValues = limit.value;
-  // displayCategory.innerHTML = category.options[category.selectedIndex].value;
+  let limitValues = limit.value;
+  displayCategory.innerHTML = category.options[category.selectedIndex].value;
 
   if (categoryValues && diffucultValues !== "") {
     await getQuizzes(diffucultValues, categoryValues, limitValues)
@@ -192,9 +189,9 @@ let score = 0;
 
 function nextQuestion(data) {
   if (currQuiz < data.length - 1) {
-    currQuiz++
-    console.log(currQuiz)
-  } else if (currQuiz === data.length - 1) {
+    currQuiz++;
+  } 
+  if (currQuiz === data.length - 1) {
     console.log("yey!");
     nextBtn.classList.add("hidden");
     submitBtn.classList.remove("hidden");
@@ -216,24 +213,26 @@ function updateQuestion(data, optionCard, amount) {
   randomOption.forEach((option, i) => optionCard += displayOptions(option, i));
   options.innerHTML = optionCard;
 
-  const eOption = document.querySelectorAll(".radio-option");
+  // const eOption = document.querySelectorAll(".radio-option");
 
-  eOption.forEach((e) => {
-    e.addEventListener("click", e => {
-      const value = e.target.value;
-      if (data[currQuiz].correctAnswer === value) {
-        score++;
-        e.disabled = true;
-        displayScore.innerHTML = `${score} / ${amount}`;
-      }
-    });
-  })
+  // eOption.forEach((e) => {
+  //   e.addEventListener("click", e => {
+  //     const value = e.target.value;
+  //     if (data[currQuiz].correctAnswer === value) {
+  //       score++;
+  //       e.disabled = true;
+  //       displayScore.innerHTML = `${score} / ${amount}`;
+  //     }
+  //   });
+  // })
+
+
   displayLength.innerHTML = `${currQuiz + 1} / ${amount}`
 }
 
 
 
-async function getQuizzes(diffucult = "", category = "", limit = 0) {
+async function getQuizzes(diffucult = "", category = "", limit) {
   let optionCard = "";
   let req = await fetch(`https://the-trivia-api.com/api/questions?categories=${category}&limit=${limit}&difficulty=${diffucult}`);
   let resp = await req.json();
@@ -241,11 +240,9 @@ async function getQuizzes(diffucult = "", category = "", limit = 0) {
   updateQuestion(resp, optionCard, resp.length)
 
   nextBtn.addEventListener("click", () => {
-    nextQuestion(resp);
-    updateQuestion(resp, optionCard)
+    nextQuestion(resp); 
+    updateQuestion(resp, optionCard, resp.length)
   });
-
-  console.log(resp)
 
 }
 
@@ -254,14 +251,13 @@ submitBtn.addEventListener("click", () => {
   sectionScore.classList.remove("hidden")
 });
 
-document.addEventListener("DOMContentLoaded", async () => {
-  showCategory()
+
+document.addEventListener('DOMContentLoaded', function () {
   inputName.focus();
-})
+});
 
 function quit() {
-  window.location.reload()
-
+  window.location.reload()  
 }
 
 const displayOptions = (option, index) => {
@@ -277,4 +273,3 @@ const displayOptions = (option, index) => {
     </li>
   `
 }
-
