@@ -30,6 +30,10 @@ const modalText = document.getElementById("popup-text")
 // Score Section
 const sectionScore = document.getElementById("end");
 const scoreName = document.getElementById("score-name");
+const shareBtn = document.getElementById("share-btn");
+const correctBar = document.getElementById("progress-correct");
+const displayCorrect = document.getElementById("display-correct");
+const displayIncorrect = document.getElementById('display-incorrect');
 
 // Music Function
 const musicBtn = document.getElementById("music-btn");
@@ -55,7 +59,7 @@ function previewProfile(image) {
 }
 
 
-function urlParamater(name) {
+function genereteURL(name) {
   var chars = "0123456789abcdefghijklmnopqrstuvwxyz!@#$%^&*()ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   var idLength = 5;
   var id = "";
@@ -66,8 +70,21 @@ function urlParamater(name) {
   const params = new URLSearchParams(location.search);
   params.set(`name`, `${name}`)
   params.set(`id`, `${id}`)
-  window.history.replaceState({}, '', location.pathname + '?' + params);
+  window.history.replaceState({}, '', location.pathname + '?' + params + '?result_score');
 }
+
+shareBtn.addEventListener("click", async () => {
+  const shareData = {
+    title: `${window.document.title}`,
+    url: `${window.document.location.href}`
+  }
+  try {
+    await navigator.share(shareData);
+    console.log("berhasil")
+  } catch(err) {
+    console.error("error")
+  }
+})
 
 
 formName.addEventListener('submit', e => {
@@ -92,9 +109,8 @@ formName.addEventListener('submit', e => {
   }
   profileName.innerHTML = name + `&nbsp`;
 
-  urlParamater(name)
+  genereteURL(name)
 })
-
 
 
 
@@ -240,16 +256,12 @@ function updateQuestion(data, optionCard, amount) {
       if (data[currQuiz].correctAnswer === value) {
         score++;
         e.disabled = true;
-        displayScore.innerHTML = `${score} / ${amount}`;
       }
     });
   })
 
-
-  displayLength.innerHTML = `${currQuiz + 1} / ${amount}`
+  displayLength.innerHTML = `${currQuiz + 1} / ${amount}`;
 }
-
-
 
 async function getQuizzes(diffucult = "", category = "", limit) {
   let optionCard = "";
@@ -262,14 +274,15 @@ async function getQuizzes(diffucult = "", category = "", limit) {
     nextQuestion(resp); 
     updateQuestion(resp, optionCard, resp.length)
   });
-
+  submitBtn.addEventListener("click", () => {
+    sectionQuiz.classList.add("hidden");
+    sectionScore.classList.remove("hidden")
+    correctBar.style.width = `${((score / resp.length) * 100).toFixed(0)}% `
+    displayScore.innerHTML = `${((score / resp.length) * 100).toFixed(0)}%`;
+    displayCorrect.textContent = score; 
+    displayIncorrect.innerHTML = `${resp.length - score}`
+  });
 }
-
-submitBtn.addEventListener("click", () => {
-  
-  sectionQuiz.classList.add("hidden");
-  sectionScore.classList.remove("hidden")
-});
 
 
 document.addEventListener('DOMContentLoaded', function () {

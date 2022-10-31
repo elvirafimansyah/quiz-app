@@ -22,7 +22,8 @@
             'salmon': "#F87171",
             'dark': "#380036",
             'cyan': "#0CBABA",
-            
+            'teal': "#24B683",
+            "merahmuda": "#FF756B"
           }
         }
       }
@@ -180,16 +181,48 @@
   </section>
   
   <section id="end" class="flex justify-center items-center">
-    <div class="flex bg-glass w-full lg:w-2/5  text-center  flex justify-center items-center flex-col border" style="border-image-slice: 1; border-image-source: linear-gradient(to left, rgb(255,255,255,0), #fff);" >
-      <div class="bg-salmon h-1/2 w-full rounded-b-2xl">
-        <h1>Quiz Result</h1>
-        <div class="circle rounded-full bg-white w-36 h-36 flex justify-center items-center flex-col  border-[#F98D8D]" style="border-width: 15px;">
-          <h1 class="text-salmon text-2xl font-semibold">48%</h1>
+    <div class=" bg-glass w-full lg:w-2/5 text-center border" style="border-image-slice: 1; border-image-source: linear-gradient(to left, rgb(255,255,255,0), #fff);" >
+      <div class="bg-salmon w-full rounded-b-2xl flex flex-col items-center pt-8 pb-20">
+        <h1 class="text-white text-2xl font-semibold mb-5">Quiz Result</h1>
+        <div class="circle rounded-full bg-white w-36 h-36 flex justify-center items-center flex-col border-[#F98D8D]" style="border-width: 15px;">
+          <h1 class="text-salmon text-2xl font-semibold"  id="score">0%</h1>
           <span>Your Score</span>
         </div>
       </div>
-      <div class="button-botttom flex justify-around ">
-        <div class="flex flex-col items-center hover:cursor-pointer playagain-btn" onclick="quit()">
+      <div class="flex justify-around relative top-[-2.5rem]">
+        <div class="bg-white w-48 p-5 rounded-lg ">
+          <div class="flex justify-between items-center">
+            <div>
+              <img src="src/img/check.png" width="48"  alt="checlist">
+            </div>
+            <div class="text-left ">
+              <h3 class="font-semibold text-gray-400">Total Correct</h3>
+              <span class="text-xl text-teal font-bold" id="display-correct">13</span>
+            </div>
+          </div>
+          <br />
+          <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700" >
+            <div class="bg-teal h-2.5 rounded-full" style="width: 45%" id="progress-correct"></div>
+          </div>
+        </div>
+        <div class="bg-white w-52 p-5 rounded-lg ">
+          <div class="flex justify-between items-center">
+            <div>
+              <img src="src/img/wrong.png" width="48" alt="checlist">
+            </div>
+            <div class="text-left ">
+              <h3 class="font-semibold text-gray-400">Total Incorrect</h3>
+              <span class="text-xl text-merahmuda font-bold" id="display-incorrect">13</span>
+            </div>
+          </div>
+          <br />
+          <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+            <div class="bg-merahmuda h-2.5 rounded-full" style="width: 45%" id="progress-incorrect"></div>
+          </div>
+        </div>
+      </div>
+      <div class="flex justify-around">
+        <div class="flex flex-col items-center hover:cursor-pointer playagain-btn m-10" onclick="quit()">
           <button type="button" class="text-white rounded-full bg-gradient-to-r from-red-400 to-red-500 hover:bg-gradient-to-br shadow-lg shadow-red-500/50 w-12 h-12 flex justify-center items-center flex-col mb-1"
             ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
               class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
@@ -198,7 +231,7 @@
             </svg></button>
           <span class="text-gray-100 font-medium">Play Again</span>
         </div>
-        <div class="flex flex-col items-center hover:cursor-pointer playagain-btn" onclick="quit()">
+        <div class="flex flex-col items-center hover:cursor-pointer m-10" id="share-btn" >
           <button type="button"
             class="text-white rounded-full bg-indigo-600 w-12 h-12 flex justify-center items-center flex-col mb-1"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-share-fill"
               viewBox="0 0 16 16">
