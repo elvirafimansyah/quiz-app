@@ -31,7 +31,19 @@
   </script>
 </head>
 <body class="bg-gradient-to-r from-dark to-cyan " >
-  <section id="name" class="my-16 text-white flex flex-col justify-center items-center " >
+  <nav class="shadow-sm shadow-gray-100 px-2 sm:px-4 py-2.5 rounded-lg bg-glass">
+    <div class="container flex flex-wrap justify-between items-center mx-auto">
+      <div class="flex items-center">
+        <a href="/">
+          <img src="src/img/brand.png" class="mr-3 h-6 sm:h-9" alt="Quiz Logo">
+        </a>
+      </div>
+      <div class="flex items-center md:order-2">
+        <h1 class="text-white" id="profile-name">&nbsp;</h1>
+        <img class="w-8 h-8 rounded-full" src="src/img/brand.png" id="profile-img" alt="user photo">
+      </div>
+  </nav>
+  <section id="name" class="my-16 text-white flex flex-col justify-center items-center hidden" >
     <img src="src/img/brand.png" class="text-center mb-14" alt="brand name" width="300">
     <div class="content-name  flex flex-col bg-glass p-10  text-center justify-center items-center border " style="border-image-slice: 1; border-image-source: linear-gradient(to left,  rgb(255,255,255,0), #fff);">
         <div class="flex items-center mb-2">
@@ -48,11 +60,11 @@
           <input id="profile" type="file" accept="image/*" class="hidden" onchange="previewProfile(event)">
         </div>
       <h2 class="text-2xl md:text-3xl pb-5 font-medium">Enter Your Name</h2>
-      <form class="flex flex-col justify-center items-center" id="form-name">
+      <div class="flex flex-col justify-center items-center" >
         <input type="text" class="focus:outline-none text-black lg:w-96 text-xl p-2 text-center mb-5 rounded-sm" id="input-name" required>
-        <button type="submit"
+        <button type="button"
           class="text-white bg-gradient-to-r from-red-400 to-red-500 hover:bg-gradient-to-br shadow-lg shadow-red-500/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 " id="submit-name">Enter</button>
-      </form>
+      </div>
     </div>
   </section>
   <section id="home" class=" my-10 flex flex-col justify-center items-center ">
@@ -72,7 +84,7 @@
         <option value=""selected disabled>Difficulty</option>
       </select>
       <label for="limit" class="block mb-2 text-sm font-medium text-white ">Select Limit:
-      <input name="limit" type="number" class="focus:outline-none text-black font-light  text-center text-xl p-2   rounded-sm w-full rounded-md" id="input-limit" max="20"
+      <input name="limit" type="number" class="focus:outline-none text-black font-light  text-center text-xl p-2   rounded-sm w-full rounded-md" id="input-limit" max="20" min="2"
         required>
       <button type="button" class="text-white bg-red-400 hover:bg-red-500  font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none w-full flex items-center justify-center my-2" id="play-btn" >
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16">
@@ -94,7 +106,7 @@
   </section>
   <section id="quiz" class="lg:my-2 lg:mx-4 hidden ">
     <!-- Navbar -->
-    <nav class="shadow-sm shadow-gray-100 px-2 sm:px-4 py-2.5 rounded-lg bg-glass" >
+    <!-- <nav class="shadow-sm shadow-gray-100 px-2 sm:px-4 py-2.5 rounded-lg bg-glass" >
       <div class="container flex flex-wrap justify-between items-center mx-auto">
         <div class="flex items-center">
           <a href="/">
@@ -105,7 +117,7 @@
           <h1 class="text-white" id="profile-name">&nbsp;</h1>
           <img class="w-8 h-8 rounded-full" src="src/img/brand.png" id="profile-img" alt="user photo">
       </div>
-    </nav>
+    </nav> -->
     <!-- End Navbar -->
     <!-- Main Box Question -->
     <div class="box rounded-xl flex flex-col justify-center items-center bg-glass mt-3 " id="box-question " >
@@ -182,11 +194,23 @@
   
   <section id="end" class="flex justify-center items-center">
     <div class=" bg-glass w-full lg:w-2/5 text-center border" style="border-image-slice: 1; border-image-source: linear-gradient(to left, rgb(255,255,255,0), #fff);" >
-      <div class="bg-salmon w-full rounded-b-2xl flex flex-col items-center pt-8 pb-20">
-        <h1 class="text-white text-2xl font-semibold mb-5">Quiz Result</h1>
-        <div class="circle rounded-full bg-white w-36 h-36 flex justify-center items-center flex-col border-[#F98D8D]" style="border-width: 15px;">
-          <h1 class="text-salmon text-2xl font-semibold"  id="score">0%</h1>
-          <span>Your Score</span>
+      <div class="bg-salmon w-full rounded-b-2xl pt-8 pb-20 pr-8">
+        <div class="flex justify-end items-center">
+          <span id="score-name">nam</span> &nbsp;
+          <button type="button" id="share-btn"
+            class="text-white rounded-full bg-indigo-600 w-12 h-12 flex justify-center items-center flex-col mb-1"><svg
+              xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-share-fill"
+              viewBox="0 0 16 16">
+              <path
+                d="M11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5z" />
+            </svg></button>
+        </div>
+        <div class="flex flex-col items-center justify-center">
+          <h1 class="text-white text-2xl font-semibold mb-5">Quiz Result</h1>
+          <div class="circle rounded-full bg-white w-36 h-36 flex justify-center items-center flex-col border-[#F98D8D]" style="border-width: 15px;">
+            <h1 class="text-salmon text-2xl font-semibold"  id="score">0%</h1>
+            <span>Your Score</span>
+          </div>
         </div>
       </div>
       <div class="flex justify-around relative top-[-2.5rem]">
@@ -231,15 +255,7 @@
             </svg></button>
           <span class="text-gray-100 font-medium">Play Again</span>
         </div>
-        <div class="flex flex-col items-center hover:cursor-pointer m-10" id="share-btn" >
-          <button type="button"
-            class="text-white rounded-full bg-indigo-600 w-12 h-12 flex justify-center items-center flex-col mb-1"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-share-fill"
-              viewBox="0 0 16 16">
-              <path
-                d="M11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5z" />
-            </svg></button>
-          <span class="text-gray-100 font-medium">Share</span>
-        </div>
+
       </div>
 
       <!-- <div >

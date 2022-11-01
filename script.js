@@ -51,13 +51,19 @@ musicBtn.addEventListener("click", () => {
 
 // Name Function
 function previewProfile(image) {
+  const reader = new FileReader();
+  reader.addEventListener("load", () => {
+    console.log(reader.result)
+    console.log("kok gk")
+  })
+
   if (image.target.files.length > 0) {
     let src = URL.createObjectURL(image.target.files[0]);
+    localStorage.setItem("src", src);
     preview.src = src;
     preview.style.width = '100px';
   }
 }
-
 
 function genereteURL(name) {
   var chars = "0123456789abcdefghijklmnopqrstuvwxyz!@#$%^&*()ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -81,34 +87,25 @@ shareBtn.addEventListener("click", async () => {
   try {
     await navigator.share(shareData);
     console.log("berhasil")
-  } catch(err) {
+  } catch (err) {
     console.error("error")
   }
 })
 
 
-formName.addEventListener('submit', e => {
-  e.preventDefault()
+submitNameBtn.addEventListener('click', () => {
   let name = inputName.value;
   name = name.split(" ")              // Memenggal nama menggunakan spasi
     .map(nama =>
       nama.charAt(0).toUpperCase() +
       nama.slice(1))                 // Ganti huruf besar kata-kata pertama
     .join(" ");
+
+  localStorage.setItem("name", name);
+  showName()
+
   sectionHome.classList.remove("hidden");
   sectionName.classList.add("hidden");
-  displayName.innerHTML = `
-    <div class="flex">
-      <img src="${preview.src}" class="w-10 h-10 rounded-full"/> &nbsp; 
-      <h3>${name}</h3> 
-    </div>
-  `;
-
-  for (let i = 0; i < profileImage.length; i++) {
-    profileImage[i].src = preview.src;
-  }
-  profileName.innerHTML = name + `&nbsp`;
-
   genereteURL(name)
 })
 
@@ -225,7 +222,7 @@ let score = 0;
 function nextQuestion(data) {
   if (currQuiz < data.length - 1) {
     currQuiz++;
-  } 
+  }
   if (currQuiz === data.length - 1) {
     console.log("yey!");
     nextBtn.classList.add("hidden");
@@ -271,26 +268,63 @@ async function getQuizzes(diffucult = "", category = "", limit) {
   updateQuestion(resp, optionCard, resp.length)
 
   nextBtn.addEventListener("click", () => {
-    nextQuestion(resp); 
+    nextQuestion(resp);
     updateQuestion(resp, optionCard, resp.length)
   });
+
   submitBtn.addEventListener("click", () => {
     sectionQuiz.classList.add("hidden");
     sectionScore.classList.remove("hidden")
-    correctBar.style.width = `${((score / resp.length) * 100).toFixed(0)}% `
-    displayScore.innerHTML = `${((score / resp.length) * 100).toFixed(0)}%`;
-    displayCorrect.textContent = score; 
-    displayIncorrect.innerHTML = `${resp.length - score}`
+
+    const percentScore = ((score / resp.length) * 100).toFixed(0)
+    const incorectScore = resp.length - score
+
+    //save data
+    localStorage.setItem("score", percentScore)
+    localStorage.setItem("total_data", resp.length)
+    localStorage.setItem("incorrect", incorectScore)
+    localStorage.setItem("correct", score)
+
+    correctBar.style.width = `${localStorage.getItem("score")}% `
+    displayScore.innerHTML = `${localStorage.getItem("score")}%`;
+    displayCorrect.textContent = localStorage.getItem("correct");
+    displayIncorrect.innerHTML = `${localStorage.getItem("incorrect")}`
   });
 }
 
+function showName() {
+  displayName.innerHTML = `
+      <div class="flex">
+        <img src="${localStorage.getItem("src")}" class="w-10 h-10 rounded-full"/> &nbsp; 
+        <h3>${localStorage.getItem("name")}</h3> 
+      </div>
+    `;
+
+  for (let i = 0; i < profileImage.length; i++) {
+    profileImage[i].src = preview.src;
+  }
+  profileName.innerHTML = localStorage.getItem("name") + `&nbsp`;
+  scoreName.innerHTML = localStorage.getItem("name");
+};
 
 document.addEventListener('DOMContentLoaded', function () {
   inputName.focus();
+  if (localStorage.getItem("name") || localStorage.getItem("src")) {
+    showName()
+    // name = nama;
+    // localStorage.setItem("name", name.split(" ")              // Memenggal nama menggunakanspasi
+    //   .map(nama =>
+    //     nama.charAt(0).toUpperCase() +
+    //     nama.slice(1))                 // Ganti huruf besar kata-kata pertama
+    //   .join(" "))
+  }  else {
+    sectionName.classList.remove("hidden");
+  }
+  
 });
 
 function quit() {
-  window.location.reload()  
+  window.location.reload()
 }
 
 const displayOptions = (option, index) => {
