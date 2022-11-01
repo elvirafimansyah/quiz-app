@@ -40,7 +40,25 @@
       </div>
       <div class="flex items-center md:order-2">
         <h1 class="text-white" id="profile-name">&nbsp;</h1>
-        <img class="w-8 h-8 rounded-full" src="src/img/brand.png" id="profile-img" alt="user photo">
+        <img type="button"  class="w-8 h-8 rounded-full cursor-pointer" src="https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png"  data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start" id="profile-img">
+        <!-- Dropdown menu -->
+        <div id="userDropdown"
+          class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow ">
+          <div class="py-3 px-4 text-sm text-gray-900 ">
+            <div id="score-name">User</div>
+          </div>
+          <div class="py-1 font-medium" id="signout-btn">
+            <a href="#"
+              class="block py-2 px-4 text-sm text-red-500 hover:text-red-400 hover:bg-gray-100 flex  items-center "><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-left"
+                viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                  d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0v2z" />
+                <path fill-rule="evenodd"
+                  d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z" />
+              </svg>&nbsp;&nbsp;Sign
+              out</a>
+          </div>
+        </div>
       </div>
   </nav>
   <section id="name" class="my-16 text-white flex flex-col justify-center items-center hidden" >
@@ -57,7 +75,7 @@
                 d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z" />
             </svg> &nbsp; Upload Profile
           </label>
-          <input id="profile" type="file" accept="image/*" class="hidden" onchange="previewProfile(event)">
+          <input id="profile" type="file" accept="image/*" class="hidden" >
         </div>
       <h2 class="text-2xl md:text-3xl pb-5 font-medium">Enter Your Name</h2>
       <div class="flex flex-col justify-center items-center" >
@@ -196,7 +214,6 @@
     <div class=" bg-glass w-full lg:w-2/5 text-center border" style="border-image-slice: 1; border-image-source: linear-gradient(to left, rgb(255,255,255,0), #fff);" >
       <div class="bg-salmon w-full rounded-b-2xl pt-8 pb-20 pr-8">
         <div class="flex justify-end items-center">
-          <span id="score-name">nam</span> &nbsp;
           <button type="button" id="share-btn"
             class="text-white rounded-full bg-indigo-600 w-12 h-12 flex justify-center items-center flex-col mb-1"><svg
               xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-share-fill"
@@ -225,7 +242,7 @@
             </div>
           </div>
           <br />
-          <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700" >
+          <div class="w-full  rounded-full h-2.5 bg-gray-700" >
             <div class="bg-teal h-2.5 rounded-full" style="width: 45%" id="progress-correct"></div>
           </div>
         </div>
@@ -240,7 +257,7 @@
             </div>
           </div>
           <br />
-          <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+          <div class="w-full  rounded-full h-2.5 bg-gray-700">
             <div class="bg-merahmuda h-2.5 rounded-full" style="width: 45%" id="progress-incorrect"></div>
           </div>
         </div>
