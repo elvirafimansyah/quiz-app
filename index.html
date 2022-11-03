@@ -85,8 +85,7 @@
       </div>
     </div>
   </section>
-  <section id="home" class=" my-10 flex flex-col justify-center items-center ">
-    <img src="src/img/brand.png" class="text-center mb-14" alt="brand name" width="300">
+  <section id="home" class=" my-10 flex flex-col justify-center items-center hidden">
     <div class="content-name max-w-md flex flex-col bg-glass p-10 border"
       style="border-image-slice: 1; border-image-source: linear-gradient(to left, rgb(255,255,255,0), #fff);" id="formPlay">
       <h1 id="text-name" class="text-white text-2xl mb-2"></h1>
@@ -111,8 +110,7 @@
         Play
       </button>
       <button type="button"
-          class="text-white bg-red-400 hover:bg-red-500  font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none w-full flex items-center justify-center my-2"
-          onclick="quit()">
+          class="text-white bg-red-400 hover:bg-red-500  font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none w-full flex items-center justify-center my-2" id="back-btn">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-fill"
             viewBox="0 0 16 16">
             <path
@@ -210,9 +208,9 @@
     <!-- End Main Box Question -->
   </section>
   
-  <section id="end" class="flex justify-center items-center">
-    <div class=" bg-glass w-full lg:w-2/5 text-center border" style="border-image-slice: 1; border-image-source: linear-gradient(to left, rgb(255,255,255,0), #fff);" >
-      <div class="bg-salmon w-full rounded-b-2xl pt-8 pb-20 pr-8">
+  <section id="end" class="flex justify-center items-center hidden">
+    <div class=" bg-glass w-full lg:w-2/5 text-center border m-3 " style="border-image-slice: 1; border-image-source: linear-gradient(to left, #ffffff00, #fff);" >
+      <div class="bg-salmon w-full rounded-b-2xl pt-8 pb-20 pr-8 ">
         <div class="flex justify-end items-center">
           <button type="button" id="share-btn"
             class="text-white rounded-full bg-indigo-600 w-12 h-12 flex justify-center items-center flex-col mb-1"><svg
@@ -222,7 +220,7 @@
                 d="M11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5z" />
             </svg></button>
         </div>
-        <div class="flex flex-col items-center justify-center">
+        <div class="flex flex-col items-center justify-center ">
           <h1 class="text-white text-2xl font-semibold mb-5">Quiz Result</h1>
           <div class="circle rounded-full bg-white w-36 h-36 flex justify-center items-center flex-col border-[#F98D8D]" style="border-width: 15px;">
             <h1 class="text-salmon text-2xl font-semibold"  id="score">0%</h1>
@@ -230,11 +228,11 @@
           </div>
         </div>
       </div>
-      <div class="flex justify-around relative top-[-2.5rem]">
-        <div class="bg-white w-48 p-5 rounded-lg ">
-          <div class="flex justify-between items-center">
+      <div class="flex md:justify-around items-center flex-col md:flex-row relative top-[-2.5rem] ">
+        <div class="bg-white w-3/4 md:w-48 p-5 rounded-lg mb-2">
+          <div class="flex md:justify-between items-center">
             <div>
-              <img src="src/img/check.png" width="48"  alt="checlist">
+              <img src="src/img/check.png" width="48" class="pr-3 lg:pr-0" alt="checlist">
             </div>
             <div class="text-left ">
               <h3 class="font-semibold text-gray-400">Total Correct</h3>
@@ -246,10 +244,10 @@
             <div class="bg-teal h-2.5 rounded-full" style="width: 45%" id="progress-correct"></div>
           </div>
         </div>
-        <div class="bg-white w-52 p-5 rounded-lg ">
-          <div class="flex justify-between items-center">
+        <div class="bg-white w-3/4 md:w-52 p-5 rounded-lg ">
+          <div class="flex md:justify-between items-center">
             <div>
-              <img src="src/img/wrong.png" width="48" alt="checlist">
+              <img src="src/img/wrong.png" width="48" class="pr-3 lg:pr-0" alt="checlist">
             </div>
             <div class="text-left ">
               <h3 class="font-semibold text-gray-400">Total Incorrect</h3>

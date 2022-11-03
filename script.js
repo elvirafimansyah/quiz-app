@@ -295,6 +295,13 @@ async function getQuizzes(diffucult = "", category = "", limit) {
   });
 }
 
+function saveResult() {
+  correctBar.style.width = `${localStorage.getItem("score")}% `
+  displayScore.innerHTML = localStorage.getItem("score") + "%";
+  displayCorrect.textContent = localStorage.getItem("correct");
+  displayIncorrect.innerHTML = `${localStorage.getItem("incorrect")}`
+}
+
 function showName() {
   displayName.innerHTML = `
       <div class="flex">
@@ -317,15 +324,24 @@ document.addEventListener('DOMContentLoaded', function () {
   inputName.focus();
   if (localStorage.getItem("name") || localStorage.getItem("src")) {
     showName()
-  }  else {
-    sectionName.classList.remove("hidden");
-  }
+  } else if (!localStorage.getItem("name")) {
+    sectionName.classList.remove("hidden")
+  } else if (!localStorage.getItem("src")) {
+    profileImage.src = "https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png"
+  } else if (localStorage.getItem("score")) {
+    showResult()
+  } 
 });
 
 function quit() {
   window.location.reload()
 }
 
+const backBtn = document.getElementById("back-btn");
+backBtn.addEventListener("click", () => {
+  sectionName.classList.remove("hidden");
+  sectionHome.classList.add("hidden")
+}); 
 // Signout
 signOutBtn.onclick = () => {
   localStorage.clear()
