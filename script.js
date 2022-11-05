@@ -203,9 +203,9 @@ playBtn.addEventListener("click", async () => {
   let diffucultValues = diffucult.dataset.value;
   let limitValues = limit.value;
 
-  if (categoryValues && diffucultValues !== "") {
+  if (categoryValues && diffucultValues !== "" && limitValues <= 20) {
     await getQuizzes(diffucultValues, categoryValues, limitValues)
-  } else {
+  } else  {
     nextBtn.classList.add("hidden");
     submitBtn.classList.add("hidden");
     displayScore.classList.add("hidden");
