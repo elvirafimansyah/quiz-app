@@ -209,8 +209,11 @@ playBtn.addEventListener("click", async () => {
     nextBtn.classList.add("hidden");
     submitBtn.classList.add("hidden");
     displayScore.classList.add("hidden");
-    quitBtn.innerText = "try again";
-    modalText.innerText = "Are you sure you want to try again?"
+    quitBtn.innerText = "Try Again";
+    modalText.innerText = "Are you sure you want to try again?";
+    options.innerHTML = `<div class="p-4 mb-4 text-md lg:text-xl text-red-700 bg-red-100 rounded-lg" role="alert">
+      <span class="font-medium">Please try again!</span> Category, Diffuculty, Limit must be filled out. 
+    </div>`
   }
 })
 

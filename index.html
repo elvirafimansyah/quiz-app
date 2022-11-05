@@ -192,7 +192,7 @@
                   </svg>
                   <h3 class="mb-5 text-lg font-normal text-gray-500 " id="popup-text">Are you sure you want to quit game?</h3>
                   <button data-modal-toggle="popup-modal" type="button"
-                    class="text-white bg-red-400 hover:bg-red-300 focus:ring-4 focus:outline-none focus:ring-red-300 -800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2" onclick="quit()">
+                    class="text-white bg-red-400 hover:bg-red-500 focus:ring-4 focus:outline-none focus:ring-red-300 -800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2" onclick="quit()">
                     Yes, I'm sure
                   </button>
                   <button data-modal-toggle="popup-modal" type="button"
@@ -225,6 +225,48 @@
               <path
                 d="M11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5z" />
             </svg></button>
+            <div
+              class=" hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full"
+              id="score-image" tabindex="-1" aria-hidden="true">
+              <div class="relative p-4 w-full max-w-2xl h-full md:h-auto top-10" id="container-modal">
+                <!-- Modal content -->
+                <div class="relative bg-glass rounded-lg shadow ">
+                  <!-- Modal header -->
+                  <div class="flex justify-between items-start p-4 rounded-t border-b border-glass-2">
+                    <h3 class="text-xl text-gray-300">
+                      Preview Image
+                    </h3>
+                    <button type="button"
+                      class="text-white bg-transparent hover:bg-glass-2  rounded-lg text-sm p-1.5 ml-auto inline-flex items-center "
+                      data-modal-toggle="score-image">
+                      <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                          d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                          clip-rule="evenodd"></path>
+                      </svg>
+                      <span class="sr-only">Close modal</span>
+                    </button>
+                  </div>
+                  <!-- Modal body -->
+                  <div class="p-6 space-y-6 result">
+                    <a href="">
+                      <button
+                        class="text-white bg-gradient-to-r from-red-400 to-red-500 hover:bg-gradient-to-br shadow-lg shadow-red-500/50 font-medium rounded-lg text-sm px-5 py-3 text-center flex items-center"><svg
+                          xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-download"
+                          viewBox="0 0 16 16">
+                          <path
+                            d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z" />
+                          <path
+                            d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z" />
+                        </svg>&nbsp;Download</button>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <hr>
+            </div>
+
         </div>
         <div class="flex flex-col items-center justify-center ">
           <h1 class="text-white text-2xl font-semibold mb-5">Quiz Result</h1>
@@ -290,55 +332,7 @@
     <img src="src/img/volume.png" alt="volume fill" class="w-5 h-5 text-white " id="music-icon">
   </button>
 
-
-  <!-- <div class="end">
-    <h2>Lorem ipsum dolor sit amet.</h2>
-    <p>
-      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facere repudiandae ea libero aspernatur voluptas,
-      possimus iste distinctio sed alias cum officiis quo quis iure explicabo, nulla assumenda asperiores
-      temporibus commodi. Laudantium libero corrupti nisi ab earum, sunt laborum, deleniti ducimus totam quod,
-      deserunt enim consequatur aspernatur soluta nulla eveniet natus!
-    </p>
-    <button onclick="convert()"  type="button" data-modal-toggle="defaultModal">Convert me to jpg image</button>
-  </div> -->
-  <div class=" hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full"  id="score-image" tabindex="-1" aria-hidden="true">
-      <div class="relative p-4 w-full max-w-2xl h-full md:h-auto top-10" id="container-modal">
-        <!-- Modal content -->
-        <div class="relative bg-glass rounded-lg shadow ">
-          <!-- Modal header -->
-          <div class="flex justify-between items-start p-4 rounded-t border-b border-glass-2">
-            <h3 class="text-xl text-gray-300">
-              Preview Image
-            </h3>
-            <button type="button"
-              class="text-white bg-transparent hover:bg-glass-2  rounded-lg text-sm p-1.5 ml-auto inline-flex items-center "
-              data-modal-toggle="score-image">
-              <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd"
-                  d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                  clip-rule="evenodd"></path>
-              </svg>
-              <span class="sr-only">Close modal</span>
-            </button>
-          </div>
-          <!-- Modal body -->
-          <div class="p-6 space-y-6 result">
-            <a href="" >
-              <button class="text-white bg-gradient-to-r from-red-400 to-red-500 hover:bg-gradient-to-br shadow-lg shadow-red-500/50 font-medium rounded-lg text-sm px-5 py-3 text-center flex items-center"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-download"
-                viewBox="0 0 16 16">
-                <path
-                  d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z" />
-                <path
-                  d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z" />
-              </svg>&nbsp;Download</button>
-            </a>
-          </div>
-        </div>
-      </div>
-    <hr>
   
-  </div>
 
   <script src="script.js"></script>
   <!-- <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script> -->
