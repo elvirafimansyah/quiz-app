@@ -365,7 +365,24 @@ playAgainBtn.addEventListener("click", () => {
   sectionHome.classList.remove("hidden");
 })
 
-
+let click = 0;
+const capture = document.querySelector(".end");
+const result = document.querySelector(".result");
+function convert() {
+  click++
+  html2canvas(capture).then(function (canvas) {
+    if (click === 1) {
+      result.append(canvas)
+    } 
+    let cvs = document.querySelector("canvas");
+    let dataURI = cvs.toDataURL("image/jpeg");
+    let downloadLink = document.querySelector(".result>a");
+    downloadLink.href = dataURI;
+    downloadLink.download = "score.jpg";
+    console.log(dataURI);
+  });
+  result.style.display = "block";
+}
 
 // Signout
 signOutBtn.onclick = () => {

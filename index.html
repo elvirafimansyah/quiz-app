@@ -302,7 +302,7 @@
     <button onclick="convert()"  type="button" data-modal-toggle="defaultModal">Convert me to jpg image</button>
   </div> -->
   <div class=" hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full"  id="score-image" tabindex="-1" aria-hidden="true">
-      <div class="relative p-4 w-full max-w-2xl h-full md:h-auto top-10">
+      <div class="relative p-4 w-full max-w-2xl h-full md:h-auto top-10" id="container-modal">
         <!-- Modal content -->
         <div class="relative bg-glass rounded-lg shadow ">
           <!-- Modal header -->
@@ -340,26 +340,8 @@
   
   </div>
 
-  <script type="text/javascript">
-    const div = document.querySelector(".end");
-      const result = document.querySelector(".result");
-      function convert() {
-        html2canvas(div).then(function (canvas) {
-          result.append(canvas)
-          let cvs = document.querySelector("canvas");
-            let dataURI = cvs.toDataURL("image/jpeg");
-          let downloadLink = document.querySelector(".result>a");
-          downloadLink.href = dataURI;
-          downloadLink.download = "score.jpg";
-          console.log(dataURI);
-        });
-        result.style.display = "block";
-      }
-  </script>
-
   <script src="script.js"></script>
   <!-- <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script> -->
-
 </body>
 
 </html>
