@@ -78,18 +78,18 @@ function genereteURL(name) {
   window.history.replaceState({}, '', location.pathname + '?' + params + '?result_score');
 }
 
-shareBtn.addEventListener("click", async () => {
-  const shareData = {
-    title: `${window.document.title}`,
-    url: `${window.document.location.href}`
-  }
-  try {
-    await navigator.share(shareData);
-    console.log("berhasil")
-  } catch (err) {
-    console.error("error")
-  }
-})
+// shareBtn.addEventListener("click", async () => {
+//   const shareData = {
+//     title: `${window.document.title}`,
+//     url: `${window.document.location.href}`
+//   }
+//   try {
+//     await navigator.share(shareData);
+//     console.log("berhasil")
+//   } catch (err) {
+//     console.error("error")
+//   }
+// })
 
 
 submitNameBtn.addEventListener('click', () => {
@@ -271,15 +271,15 @@ async function getQuizzes(diffucult = "", category = "", limit) {
     updateQuestion(resp, optionCard, resp.length)
   });
 
-  let percentScore = ((score / resp.length) * 100).toFixed(0)
-  let incorrectScore = resp.length - score
-
+  
 
   submitBtn.addEventListener("click", () => {
     sectionQuiz.classList.add("hidden");
     sectionScore.classList.remove("hidden")
   
     //save data
+    let percentScore = ((score / resp.length) * 100).toFixed(0)
+    let incorrectScore = resp.length - score
   
     const objectResult = addResult(
       percentScore,
@@ -305,7 +305,7 @@ function addResult(score, correct, incorrect) {
   return { score, correct, incorrect }
 }
 
-function displayResultElement({ score, incorrect, correct }) {
+function displayResultElement({ score, correct, incorrect }) {
   correctBar.style.width = `${score}% `
   displayScore.innerHTML = `${score}%`;
   displayCorrect.textContent = correct;
@@ -343,7 +343,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 if (localStorage.getItem("data_result")) {
-  // sectionHome.classList.add("hidden")
+  sectionHome.classList.add("hidden")
   console.log("sementara!")
 } else {
   sectionScore.classList.add("hidden");
@@ -366,6 +366,7 @@ playAgainBtn.addEventListener("click", () => {
 })
 
 
+
 // Signout
 signOutBtn.onclick = () => {
   localStorage.clear()
@@ -385,3 +386,39 @@ const displayOptions = (option, index) => {
     </li>
   `
 }
+
+// setUpDownloadPageAsImage();
+
+// function setUpDownloadPageAsImage() {
+//   shareBtn.addEventListener("click", function () {
+//     html2canvas(document.body).then(function (canvas) {
+//       console.log(canvas);
+//       simulateDownloadImageClick(canvas.toDataURL(), 'file-name.png');
+//     });
+//   });
+// }
+
+// function simulateDownloadImageClick(uri, filename) {
+//   var link = document.createElement('a');
+//   if (typeof link.download !== 'string') {
+//     window.open(uri);
+//   } else {
+//     link.href = uri;
+//     link.download = filename;
+//     accountForFirefox(clickLink, link);
+//   }
+// }
+
+// function clickLink(link) {
+//   link.click();
+// }
+
+// function accountForFirefox(click) { // wrapper function
+//   let link = arguments[1];
+//   document.body.appendChild(link);
+//   click(link);
+//   document.body.removeChild(link);
+// }
+
+
+
