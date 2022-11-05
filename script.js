@@ -36,7 +36,7 @@ const shareBtn = document.getElementById("share-btn");
 const correctBar = document.getElementById("progress-correct");
 const displayCorrect = document.getElementById("display-correct");
 const displayIncorrect = document.getElementById('display-incorrect');
-
+const playAgainBtn = document.getElementById('playagain-btn');
 
 // Music Function
 const musicBtn = document.getElementById("music-btn");
@@ -51,10 +51,6 @@ musicBtn.addEventListener("click", () => {
     musicIcon.src = "src/img/volume-mute.png"
   }
 })
-
-
-
-// Name Function
 
 // Profile Image
 document.getElementById("profile").addEventListener("change", function(){
@@ -275,32 +271,48 @@ async function getQuizzes(diffucult = "", category = "", limit) {
     updateQuestion(resp, optionCard, resp.length)
   });
 
+  let percentScore = ((score / resp.length) * 100).toFixed(0)
+  let incorrectScore = resp.length - score
+
+
   submitBtn.addEventListener("click", () => {
     sectionQuiz.classList.add("hidden");
     sectionScore.classList.remove("hidden")
-
-    const percentScore = ((score / resp.length) * 100).toFixed(0)
-    const incorectScore = resp.length - score
-
+  
     //save data
-    localStorage.setItem("score", percentScore)
-    localStorage.setItem("total_data", resp.length)
-    localStorage.setItem("incorrect", incorectScore)
-    localStorage.setItem("correct", score)
-
-    correctBar.style.width = `${localStorage.getItem("score")}% `
-    displayScore.innerHTML = `${localStorage.getItem("score")}%`;
-    displayCorrect.textContent = localStorage.getItem("correct");
-    displayIncorrect.innerHTML = `${localStorage.getItem("incorrect")}`
+  
+    const objectResult = addResult(
+      percentScore,
+      score,
+      incorrectScore
+    )
+  
+    displayResultElement(objectResult)
   });
 }
 
-function saveResult() {
-  correctBar.style.width = `${localStorage.getItem("score")}% `
-  displayScore.innerHTML = localStorage.getItem("score") + "%";
-  displayCorrect.textContent = localStorage.getItem("correct");
-  displayIncorrect.innerHTML = `${localStorage.getItem("incorrect")}`
+const scoreResult = JSON.parse(localStorage.getItem("data_result")) || [];
+
+function addResult(score, correct, incorrect) {
+  scoreResult.push({
+    score,
+    correct,
+    incorrect
+  })
+
+  localStorage.setItem("data_result", JSON.stringify(scoreResult))
+
+  return { score, correct, incorrect }
 }
+
+function displayResultElement({ score, incorrect, correct }) {
+  correctBar.style.width = `${score}% `
+  displayScore.innerHTML = `${score}%`;
+  displayCorrect.textContent = correct;
+  displayIncorrect.innerHTML = `${incorrect}`
+}
+
+scoreResult.forEach(displayResultElement)
 
 function showName() {
   displayName.innerHTML = `
@@ -324,14 +336,18 @@ document.addEventListener('DOMContentLoaded', function () {
   inputName.focus();
   if (localStorage.getItem("name") || localStorage.getItem("src")) {
     showName()
-  } else if (!localStorage.getItem("name")) {
-    sectionName.classList.remove("hidden")
-  } else if (!localStorage.getItem("src")) {
-    profileImage.src = "https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png"
-  } else if (localStorage.getItem("score")) {
-    showResult()
+  } else if (!localStorage.getItem("name") ) {
+    sectionName.classList.remove("hidden");
+    sectionHome.classList.add('hidden')
   } 
 });
+
+if (localStorage.getItem("data_result")) {
+  // sectionHome.classList.add("hidden")
+  console.log("sementara!")
+} else {
+  sectionScore.classList.add("hidden");
+}
 
 function quit() {
   window.location.reload()
@@ -339,9 +355,17 @@ function quit() {
 
 const backBtn = document.getElementById("back-btn");
 backBtn.addEventListener("click", () => {
-  sectionName.classList.remove("hidden");
-  sectionHome.classList.add("hidden")
+  localStorage.clear()
+  sectionName.classList.remove("hidden")
+  window.location.reload()
 }); 
+
+playAgainBtn.addEventListener("click", () => {
+  sectionScore.classList.add("hidden");
+  sectionHome.classList.remove("hidden");
+})
+
+
 // Signout
 signOutBtn.onclick = () => {
   localStorage.clear()
@@ -361,4 +385,3 @@ const displayOptions = (option, index) => {
     </li>
   `
 }
-

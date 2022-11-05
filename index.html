@@ -85,10 +85,21 @@
       </div>
     </div>
   </section>
-  <section id="home" class=" my-10 flex flex-col justify-center items-center hidden">
-    <div class="content-name max-w-md flex flex-col bg-glass p-10 border"
+  <section id="home" class=" my-20 flex flex-col justify-center items-center ">
+    <div class="content-name max-w-md  bg-glass p-10 border"
       style="border-image-slice: 1; border-image-source: linear-gradient(to left, rgb(255,255,255,0), #fff);" id="formPlay">
       <h1 id="text-name" class="text-white text-2xl mb-2"></h1>
+
+      <button type="button"
+        class="text-white bg-glass hover:bg-glass-2 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 "
+        id="back-btn" title="back">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-chevron-left"
+          viewBox="0 0 16 16">
+          <path fillRule="evenodd"
+            d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
+        </svg>
+      </button>
+
       <label for="category" class=" text-left block mb-2 text-sm font-medium text-gray-50 ">Select Category: </label>
       <select name="category" id="select-category" 
         class="bg-gray-50 border border-gray-300 px-20 text-gray-900 text-sm rounded-lg focus:ring-red-400 focus:border-red-400 block w-full p-2.5 " required>
@@ -103,21 +114,12 @@
       <label for="limit" class="block mb-2 text-sm font-medium text-white ">Select Limit:
       <input name="limit" type="number" class="focus:outline-none text-black font-light  text-center text-xl p-2   rounded-sm w-full rounded-md" id="input-limit" max="20" min="2"
         required>
-      <button type="button" class="text-white bg-red-400 hover:bg-red-500  font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none w-full flex items-center justify-center my-2" id="play-btn" >
+      <button type="button" class="text-white bg-gradient-to-r from-red-400 to-red-500 hover:bg-gradient-to-br shadow-lg shadow-red-500/50   font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none w-full flex items-center justify-center my-2" id="play-btn" >
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16">
           <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/>
         </svg>&nbsp;
         Play
       </button>
-      <button type="button"
-          class="text-white bg-red-400 hover:bg-red-500  font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none w-full flex items-center justify-center my-2" id="back-btn">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-fill"
-            viewBox="0 0 16 16">
-            <path
-              d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z" />
-          </svg>&nbsp;
-          Back
-        </button>
     </div>
   </section>
   <section id="quiz" class="lg:my-2 lg:mx-4 hidden ">
@@ -144,7 +146,7 @@
           <span class="bg-glass py-1 px-4 rounded-lg ml-2 capitalize" id="display-diffuculty" >DNF</span>
         </div>
         
-        <div id="length" class="font-medium">Question 2/20</div>
+        <div id="length" class="font-medium">DNF</div>
       </div>
       <div class="p-6">
         <div id="title" class="text-white text-center font-semibold text-2xl mb-3"></div>
@@ -208,12 +210,12 @@
     <!-- End Main Box Question -->
   </section>
   
-  <section id="end" class="flex justify-center items-center hidden">
+  <section id="end" class="flex justify-center items-center ">
     <div class=" bg-glass w-full lg:w-2/5 text-center border m-3 " style="border-image-slice: 1; border-image-source: linear-gradient(to left, #ffffff00, #fff);" >
       <div class="bg-salmon w-full rounded-b-2xl pt-8 pb-20 pr-8 ">
         <div class="flex justify-end items-center">
           <button type="button" id="share-btn"
-            class="text-white rounded-full bg-indigo-600 w-12 h-12 flex justify-center items-center flex-col mb-1"><svg
+            class="text-white rounded-full bg-glass w-12 h-12 flex justify-center items-center flex-col mb-1"><svg
               xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-share-fill"
               viewBox="0 0 16 16">
               <path
@@ -261,8 +263,8 @@
         </div>
       </div>
       <div class="flex justify-around">
-        <div class="flex flex-col items-center hover:cursor-pointer playagain-btn m-10" onclick="quit()">
-          <button type="button" class="text-white rounded-full bg-gradient-to-r from-red-400 to-red-500 hover:bg-gradient-to-br shadow-lg shadow-red-500/50 w-12 h-12 flex justify-center items-center flex-col mb-1"
+        <div class="flex flex-col items-center hover:cursor-pointer  mb-6  rounded-md p-3" >
+          <button type="button" class="text-white bg-gradient-to-r from-red-400 to-red-500 hover:bg-gradient-to-br shadow-lg shadow-red-500/50 font-medium rounded-lg text-sm px-5 py-3 text-center " id="playagain-btn"
             ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
               class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
               <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z" />
@@ -270,19 +272,7 @@
             </svg></button>
           <span class="text-gray-100 font-medium">Play Again</span>
         </div>
-
       </div>
-
-      <!-- <div >
-        <img src="src/img/bg.png" alt="profile"
-        class="w-24 h-24 rounded-full border-2 border-salmon" id="profile-img"/>
-        <h3 id="score-names" class="text-xl font-medium text-gray-100">User WTF</h3>
-      </div>
-      <div class="bg-glass w-32 h-32 rounded-full  flex items-center justify-center flex-col ">
-        <h3 class="text-salmon font-medium text-2xl" id="score">0</h3>
-        <h1 class="text-xl font-medium text-white text-center">Out Of 20</h1>
-      </div>
-      <button type="button" class="text-white bg-gradient-to-r from-red-400 to-red-500 hover:bg-gradient-to-br shadow-lg shadow-red-500/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 " onclick="quit()">Play Again</button> -->
     </div>
   </section>
   <!-- Music Button -->
