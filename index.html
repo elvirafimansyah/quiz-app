@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" class="h-full">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <script src="https://cdn.tailwindcss.com"></script> 
+  <script src="https://cdn.tailwindcss.com"></script>
   <!-- Flowbite -->
   <link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.3/dist/flowbite.min.css" />
   <script src="https://unpkg.com/flowbite@1.5.3/dist/flowbite.js"></script>
@@ -31,13 +32,9 @@
   </script>
   <!-- html2canvas -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.0/html2canvas.min.js"></script>
-  <style>
-    *:focus {
-        outline: none;
-    }
-  </style>
 </head>
-<body class="bg-gradient-to-r from-dark to-cyan " >
+
+<body class="bg-gradient-to-r from-dark to-cyan ">
   <nav class="shadow-sm shadow-gray-100 px-2 sm:px-4 py-2.5 rounded-lg bg-glass">
     <div class="container flex flex-wrap justify-between items-center mx-auto">
       <div class="flex items-center">
@@ -46,26 +43,30 @@
         </a>
       </div>
       <div class="flex items-center md:order-2">
-        <h1 class="text-white" id="profile-name">&nbsp;</h1>
-        <img type="button"  class="w-8 h-8 rounded-full cursor-pointer" src="https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png"  data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start" id="profile-img">
+        <div class="hover:bg-glass-2 flex items-center px-3 py-1.5 rounded-md">
+          <h1 class="text-white hover:cursor-default font-medium" id="profile-name">&nbsp;</h1>
+          <img type="button" class="w-8 h-8 rounded-full cursor-pointer"
+            src="https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png" data-dropdown-toggle="userDropdown"
+            data-dropdown-placement="bottom-start" id="profile-img">
+        </div>
         <!-- Dropdown menu -->
-        <div id="userDropdown"
-          class="hidden z-10 bg-white rounded divide-y divide-gray-100 shadow ">
+        <div id="userDropdown" class="hidden z-10 bg-white rounded divide-y divide-gray-100 shadow ">
           <div class="py-3 px-4 text-sm text-gray-900 flex justify-between focus:outline-none" id="edit-name">
             <!-- Edit Name Content -->
           </div>
           <ul class="py-1 text-sm text-gray-700 " aria-labelledby="avatarButton">
             <li>
-              <a href="#" class="block py-2 px-4 hover:bg-gray-100 ">Dashboard</a>
+              <a href="/" class="block py-2 px-4 hover:bg-gray-100 ">Dashboard</a>
             </li>
             <li>
-              <a href="#" class="block py-2 px-4 hover:bg-gray-100 ">Profile</a>
+              <a href="profile.html" class="block py-2 px-4 hover:bg-gray-100">Profile</a>
             </li>
           </ul>
-          <div class="py-1 font-medium" >
+          <div class="py-1 font-medium">
             <a href="#" type="button" data-modal-toggle="signout-modal"
-              class="block py-2 px-4 text-sm text-red-500 hover:text-red-400 hover:bg-gray-100 flex items-center  signout-btn"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-left"
-                viewBox="0 0 16 16">
+              class="block py-2 px-4 text-sm text-red-500 hover:text-red-400 hover:bg-gray-100 flex items-center  signout-btn"><svg
+                xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="bi bi-box-arrow-left" viewBox="0 0 16 16">
                 <path fill-rule="evenodd"
                   d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0v2z" />
                 <path fill-rule="evenodd"
@@ -98,7 +99,8 @@
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                 </svg>
-                <h3 class="mb-5 text-lg font-normal text-gray-500 " id="popup-text">Are you sure you want to sign out?</h3>
+                <h3 class="mb-5 text-lg font-normal text-gray-500 " id="popup-text">Are you sure you want to sign out?
+                </h3>
                 <button data-modal-toggle="signout-modal" type="button"
                   class="text-white bg-red-400 hover:bg-red-500 focus:ring-4 focus:outline-none focus:ring-red-300 -800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2"
                   id="signout-btn">
@@ -113,78 +115,90 @@
         </div>
       </div>
   </nav>
-  <section id="name" class="my-16 text-white flex flex-col justify-center items-center hidden" >
+  <section id="name" class="my-16 text-white flex flex-col justify-center items-center hidden">
     <img src="src/img/brand.png" class="text-center mb-14" alt="brand name" width="300">
-    <div class="content-name  flex flex-col bg-glass p-10  text-center justify-center items-center border " style="border-image-slice: 1; border-image-source: linear-gradient(to left,  rgb(255,255,255,0), #fff);">
-        <div class="flex items-center mb-2">
-          <img src="https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png" alt="profile" id="preview-profile" class="w-20 h-20 rounded-full mr-2" />
-          <label for="profile" class="text-white bg-gradient-to-r from-red-400 to-red-500 hover:bg-gradient-to-br shadow-lg shadow-red-500/50  font-medium rounded-lg text-sm px-5 py-2.5 text-center flex items-center">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-upload"
-              viewBox="0 0 16 16">
-              <path
-                d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z" />
-              <path
-                d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z" />
-            </svg> &nbsp; Upload Profile
-          </label>
-          <input id="profile" type="file" accept="image/*" class="hidden" >
-        </div>
+    <div class="content-name  flex flex-col bg-glass p-10  text-center justify-center items-center border "
+      style="border-image-slice: 1; border-image-source: linear-gradient(to left,  rgb(255,255,255,0), #fff);">
+      <div class="flex items-center mb-2">
+        <img src="https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png" alt="profile" id="preview-profile"
+          class="w-20 h-20 rounded-full mr-2" />
+        <label for="profile"
+          class="text-white bg-gradient-to-r from-red-400 to-red-500 hover:bg-gradient-to-br shadow-lg shadow-red-500/50  font-medium rounded-lg text-sm px-5 py-2.5 text-center flex items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-upload"
+            viewBox="0 0 16 16">
+            <path
+              d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z" />
+            <path
+              d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z" />
+          </svg> &nbsp; Upload Profile
+        </label>
+        <input id="profile" type="file" accept="image/*" class="hidden">
+      </div>
       <h2 class="text-2xl md:text-3xl pb-5 font-medium">Enter Your Name</h2>
-      <div class="flex flex-col justify-center items-center" >
-        <input type="text" class="focus:outline-none text-black lg:w-96 text-xl p-2 text-center mb-5 rounded-sm" id="input-name" required>
+      <div class="flex flex-col justify-center items-center">
+        <input type="text" class="focus:outline-none text-black lg:w-96 text-xl p-2 text-center mb-5 rounded-sm"
+          id="input-name" required>
         <button type="button"
-          class="text-white bg-gradient-to-r from-red-400 to-red-500 hover:bg-gradient-to-br shadow-lg shadow-red-500/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 " id="submit-name">Enter</button>
+          class="text-white bg-gradient-to-r from-red-400 to-red-500 hover:bg-gradient-to-br shadow-lg shadow-red-500/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 "
+          id="submit-name">Enter</button>
       </div>
     </div>
   </section>
   <section id="home" class=" my-20 flex flex-col justify-center items-center ">
     <div class="content-name max-w-md  bg-glass p-10 border"
-      style="border-image-slice: 1; border-image-source: linear-gradient(to left, rgb(255,255,255,0), #fff);" id="formPlay">
+      style="border-image-slice: 1; border-image-source: linear-gradient(to left, rgb(255,255,255,0), #fff);"
+      id="formPlay">
       <div class="flex justify-between">
         <button type="button"
-        class="text-white bg-glass hover:bg-glass-2 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 "
-        id="back-btn" title="back">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-chevron-left"
-        viewBox="0 0 16 16">
-        <path fillRule="evenodd"
-        d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
-        </svg>
+          class="text-white bg-glass hover:bg-glass-2 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 "
+          id="back-btn" title="back">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+            className="bi bi-chevron-left" viewBox="0 0 16 16">
+            <path fillRule="evenodd"
+              d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
+          </svg>
         </button>
-       
       </div>
 
       <label for="category" class=" text-left block mb-2 text-sm font-medium text-gray-50 ">Select Category: </label>
-      <select name="category" id="select-category" 
-        class="bg-gray-50 border border-gray-300 px-20 text-gray-900 text-sm rounded-lg focus:ring-red-400 focus:border-red-400 block w-full p-2.5 " required>
+      <select name="category" id="select-category"
+        class="bg-gray-50 border border-gray-300 px-20 text-gray-900 text-sm rounded-lg focus:ring-red-400 focus:border-red-400 block w-full p-2.5 "
+        required>
         <option value="" selected disabled>Categories</option>
       </select>
       <label for="difficulty" class="block mb-2 text-sm font-medium text-white ">Select Difficulty:
       </label>
-      <select name="difficulty" id="select-difficulty" 
-        class="bg-gray-50 border border-gray-300 px-20 text-gray-900 text-sm rounded-lg focus:ring-red-400 focus:border-red-400 block w-full p-2.5" required>
-        <option value=""selected disabled>Difficulty</option>
+      <select name="difficulty" id="select-difficulty"
+        class="bg-gray-50 border border-gray-300 px-20 text-gray-900 text-sm rounded-lg focus:ring-red-400 focus:border-red-400 block w-full p-2.5"
+        required>
+        <option value="" selected disabled>Difficulty</option>
       </select>
       <label for="limit" class="block mb-2 text-sm font-medium text-white ">Select Limit:
-      <input name="limit" type="number" class="focus:outline-none text-black font-light  text-center text-xl p-2   rounded-sm w-full rounded-md" id="input-limit" max="20" min="2"
-        required>
-      <button type="button" class="text-white bg-gradient-to-r from-red-400 to-red-500 hover:bg-gradient-to-br shadow-lg shadow-red-500/50   font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none w-full flex items-center justify-center my-2" id="play-btn" >
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16">
-          <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/>
-        </svg>&nbsp;
-        Play
-      </button>
+        <input name="limit" type="number"
+          class="focus:outline-none text-black font-light  text-center text-xl p-2   rounded-sm w-full rounded-md"
+          id="input-limit" max="20" min="2" required>
+        <button type="button"
+          class="text-white bg-gradient-to-r from-red-400 to-red-500 hover:bg-gradient-to-br shadow-lg shadow-red-500/50   font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none w-full flex items-center justify-center my-2"
+          id="play-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-fill"
+            viewBox="0 0 16 16">
+            <path
+              d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z" />
+          </svg>&nbsp;
+          Play
+        </button>
     </div>
   </section>
   <section id="quiz" class="lg:my-2 lg:mx-4 hidden ">
     <!-- Main Box Question -->
-    <div class="box rounded-xl flex flex-col justify-center items-center bg-glass mt-3 " id="box-question " >
+    <div class="box rounded-xl flex flex-col justify-center items-center bg-glass mt-3 " id="box-question ">
       <div class="bg-salmon w-full flex items-center text-white py-3 px-5 justify-between rounded-t-lg ">
         <div class="flex items-center">
-          <img src="src/img/cat-icon.png" class="w-6 h-6 mr-2" alt="category icon"> 
+          <img src="src/img/cat-icon.png" class="w-6 h-6 mr-2" alt="category icon">
           <h3 class="font-medium" id="display-category">DNF</h3>
-          <span class="bg-glass py-1 px-4 rounded-lg ml-2 capitalize" id="display-diffuculty" >DNF</span>
+          <span class="bg-glass py-1 px-4 rounded-lg ml-2 capitalize" id="display-diffuculty">DNF</span>
         </div>
-        
+
         <div id="length" class="font-medium">DNF</div>
       </div>
       <div class="p-6">
@@ -192,15 +206,16 @@
         <ul class="flex flex-col items-center justify-centers" id="options">
         </ul>
         <div class="flex justify-around">
-          <button id="quit-btn" class="bg-red-500 p-2 rounded-md flex items-center  justify-center text-white " type="button" data-modal-toggle="popup-modal" >
+          <button id="quit-btn" class="bg-red-500 p-2 rounded-md flex items-center  justify-center text-white "
+            type="button" data-modal-toggle="popup-modal">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#fff" class="bi bi-box-arrow-left "
-            viewBox="0 0 16 16">
-            <path fill-rule="evenodd"
-              d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0v2z" />
-            <path fill-rule="evenodd"
-              d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z" />
+              viewBox="0 0 16 16">
+              <path fill-rule="evenodd"
+                d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0v2z" />
+              <path fill-rule="evenodd"
+                d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z" />
             </svg>
-            &nbsp; 
+            &nbsp;
             Quit
           </button>
 
@@ -225,9 +240,11 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                       d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                   </svg>
-                  <h3 class="mb-5 text-lg font-normal text-gray-500 " id="popup-text">Are you sure you want to quit game?</h3>
+                  <h3 class="mb-5 text-lg font-normal text-gray-500 " id="popup-text">Are you sure you want to quit
+                    game?</h3>
                   <button data-modal-toggle="popup-modal" type="button"
-                    class="text-white bg-red-400 hover:bg-red-500 focus:ring-4 focus:outline-none focus:ring-red-300 -800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2" onclick="quit()">
+                    class="text-white bg-red-400 hover:bg-red-500 focus:ring-4 focus:outline-none focus:ring-red-300 -800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2"
+                    onclick="quit()">
                     Yes, I'm sure
                   </button>
                   <button data-modal-toggle="popup-modal" type="button"
@@ -237,20 +254,25 @@
               </div>
             </div>
           </div>
-          <button id="next-question" class="text-white bg-gradient-to-r from-red-400 to-red-500 hover:bg-gradient-to-br shadow-lg shadow-red-500/50  font-medium rounded-lg text-sm px-5 py-2.5 text-center flex items-center">Next Question &nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right"
-            viewBox="0 0 16 16">
-            <path fill-rule="evenodd"
-              d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
-          </svg></button>
-          <button type="button" class="text-white bg-gradient-to-r from-red-400 to-red-500 hover:bg-gradient-to-br shadow-lg shadow-red-500/50  font-medium rounded-lg text-sm px-5 py-2.5 text-center flex items-center hidden" id="submit-btn">Submit</button>
+          <button id="next-question"
+            class="text-white bg-gradient-to-r from-red-400 to-red-500 hover:bg-gradient-to-br shadow-lg shadow-red-500/50  font-medium rounded-lg text-sm px-5 py-2.5 text-center flex items-center">Next
+            Question &nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+              class="bi bi-arrow-right" viewBox="0 0 16 16">
+              <path fill-rule="evenodd"
+                d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
+            </svg></button>
+          <button type="button"
+            class="text-white bg-gradient-to-r from-red-400 to-red-500 hover:bg-gradient-to-br shadow-lg shadow-red-500/50  font-medium rounded-lg text-sm px-5 py-2.5 text-center flex items-center hidden"
+            id="submit-btn">Submit</button>
         </div>
       </div>
     </div>
     <!-- End Main Box Question -->
   </section>
-  
-  <div id="end" class="flex justify-center items-center " >
-    <div class=" bg-[#F5F7FB] w-full lg:w-2/5 text-center border m-3 end" style="border-image-slice: 1; border-image-source: linear-gradient(to left, #ffffff00, #fff);" >
+
+  <div id="end" class="flex justify-center items-center ">
+    <div class=" bg-[#F5F7FB] w-full lg:w-2/5 text-center border m-3 end"
+      style="border-image-slice: 1; border-image-source: linear-gradient(to left, #ffffff00, #fff);">
       <div class="bg-salmon w-full rounded-b-2xl pt-8 pb-20 px-8 ">
         <div class="flex justify-between items-center">
           <h1 id="text-name" class="text-white text-2xl mb-2"></h1>
@@ -261,53 +283,54 @@
               <path
                 d="M11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5z" />
             </svg></button>
-            <div
-              class=" hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full"
-              id="score-image" tabindex="-1" aria-hidden="true">
-              <div class="relative p-4 w-full max-w-2xl h-full md:h-auto top-10" id="container-modal">
-                <!-- Modal content -->
-                <div class="relative bg-glass rounded-lg shadow ">
-                  <!-- Modal header -->
-                  <div class="flex justify-between items-start p-4 rounded-t border-b border-glass-2">
-                    <h3 class="text-xl text-gray-300">
-                      Preview Image
-                    </h3>
-                    <button type="button"
-                      class="text-white bg-transparent hover:bg-glass-2  rounded-lg text-sm p-1.5 ml-auto inline-flex items-center "
-                      data-modal-toggle="score-image">
-                      <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd"
-                          d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                          clip-rule="evenodd"></path>
-                      </svg>
-                      <span class="sr-only">Close modal</span>
-                    </button>
-                  </div>
-                  <!-- Modal body -->
-                  <div class="p-6 space-y-6 result">
-                    <a href="">
-                      <button
-                        class="text-white bg-gradient-to-r from-red-400 to-red-500 hover:bg-gradient-to-br shadow-lg shadow-red-500/50 font-medium rounded-lg text-sm px-5 py-3 text-center flex items-center"><svg
-                          xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-download"
-                          viewBox="0 0 16 16">
-                          <path
-                            d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z" />
-                          <path
-                            d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z" />
-                        </svg>&nbsp;Download</button>
-                    </a>
-                  </div>
+          <div
+            class=" hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full"
+            id="score-image" tabindex="-1" aria-hidden="true">
+            <div class="relative p-4 w-full max-w-2xl h-full md:h-auto top-10" id="container-modal">
+              <!-- Modal content -->
+              <div class="relative bg-glass rounded-lg shadow ">
+                <!-- Modal header -->
+                <div class="flex justify-between items-start p-4 rounded-t border-b border-glass-2">
+                  <h3 class="text-xl text-gray-300">
+                    Preview Image
+                  </h3>
+                  <button type="button"
+                    class="text-white bg-transparent hover:bg-glass-2  rounded-lg text-sm p-1.5 ml-auto inline-flex items-center "
+                    data-modal-toggle="score-image">
+                    <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd"
+                        d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                        clip-rule="evenodd"></path>
+                    </svg>
+                    <span class="sr-only">Close modal</span>
+                  </button>
+                </div>
+                <!-- Modal body -->
+                <div class="p-6 space-y-6 result">
+                  <a href="">
+                    <button
+                      class="text-white bg-gradient-to-r from-red-400 to-red-500 hover:bg-gradient-to-br shadow-lg shadow-red-500/50 font-medium rounded-lg text-sm px-5 py-3 text-center flex items-center"><svg
+                        xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-download" viewBox="0 0 16 16">
+                        <path
+                          d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z" />
+                        <path
+                          d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z" />
+                      </svg>&nbsp;Download</button>
+                  </a>
                 </div>
               </div>
-              <hr>
             </div>
+            <hr>
+          </div>
 
         </div>
         <div class="flex flex-col items-center justify-center ">
           <h1 class="text-white text-2xl font-semibold mb-5">Quiz Result</h1>
-          <div class="circle rounded-full bg-white w-36 h-36 flex justify-center items-center flex-col border-[#F98D8D]" style="border-width: 15px;">
-            <h1 class="text-salmon text-2xl font-semibold"  id="score">0%</h1>
+          <div class="circle rounded-full bg-white w-36 h-36 flex justify-center items-center flex-col border-[#F98D8D]"
+            style="border-width: 15px;">
+            <h1 class="text-salmon text-2xl font-semibold" id="score">0%</h1>
             <span>Your Score</span>
           </div>
         </div>
@@ -324,7 +347,7 @@
             </div>
           </div>
           <br />
-          <div class="w-full  rounded-full h-2.5 bg-gray-700" >
+          <div class="w-full  rounded-full h-2.5 bg-gray-700">
             <div class="bg-teal h-2.5 rounded-full" style="width: 45%" id="progress-correct"></div>
           </div>
         </div>
@@ -345,12 +368,14 @@
         </div>
       </div>
       <div class="flex justify-around ">
-        <div class="flex flex-col items-center hover:cursor-pointer  mb-6  rounded-md p-3" >
-          <button type="button" class="text-white bg-gradient-to-r from-red-400 to-red-500 hover:bg-gradient-to-br shadow-lg shadow-red-500/50 font-medium rounded-lg text-sm px-5 py-3 text-center flex items-center" id="playagain-btn"
-            ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+        <div class="flex flex-col items-center hover:cursor-pointer  mb-6  rounded-md p-3">
+          <button type="button"
+            class="text-white bg-gradient-to-r from-red-400 to-red-500 hover:bg-gradient-to-br shadow-lg shadow-red-500/50 font-medium rounded-lg text-sm px-5 py-3 text-center flex items-center"
+            id="playagain-btn"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
               class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
               <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z" />
-              <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z" />
+              <path
+                d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z" />
             </svg>&nbsp;Play Again</button>
         </div>
       </div>
@@ -368,9 +393,7 @@
     <img src="src/img/volume.png" alt="volume fill" class="w-5 h-5 text-white " id="music-icon">
   </button>
 
-  
-
-  <script src="script.js"></script>
+  <script src="scripts/script.js"></script>
   <!-- <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script> -->
 </body>
 

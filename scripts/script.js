@@ -1,6 +1,6 @@
 // Navbar Section
 const signOutBtn = document.getElementById("signout-btn");
-const contEditName = document.getElementById("edit-name");
+const contEditName = document.querySelector("#edit-name");
 // Name Section
 const sectionName = document.getElementById("name")
 const inputName = document.getElementById("input-name");
@@ -25,8 +25,8 @@ const title = document.getElementById("title");
 const options = document.getElementById("options");
 const displayLength = document.getElementById("length");
 const displayScore = document.getElementById("score");
-const profileName = document.getElementById("profile-name")
-const profileImage = document.querySelector("#profile-img");
+const profileName = document.querySelectorAll("#profile-name")
+const profileImage = document.querySelectorAll("#profile-img");
 const displayCategory = document.getElementById("display-category");
 const displayDiffuculty = document.getElementById("display-diffuculty");
 const modalText = document.getElementById("popup-text")
@@ -93,15 +93,10 @@ submitNameBtn.addEventListener('click', () => {
 
   // edit name
 
-
   sectionHome.classList.remove("hidden");
   sectionName.classList.add("hidden");
   genereteURL(name)
 })
-
-
-
-
 
 // // Home Function
 // // * category
@@ -279,7 +274,7 @@ async function getQuizzes(diffucult = "", category = "", limit) {
       percentScore,
       score,
       incorrectScore,
-      new Date().getTime()
+      new Date().toLocaleString()
     )
 
     displayResultElement(objectResult)
@@ -298,7 +293,7 @@ function addResult(score, correct, incorrect, createAt) {
 
   localStorage.setItem("data_result", JSON.stringify(scoreResult))
 
-  return { score, correct, incorrect }
+  return { score, correct, incorrect, createAt }
 }
 
 function displayResultElement({ score, correct, incorrect }) {
@@ -320,11 +315,17 @@ function showName() {
       `;
   }
 
-  profileImage.src = localStorage.getItem("src");
-  profileName.innerHTML = localStorage.getItem("name") + `&nbsp`;
+  profileImage.forEach(image => {
+    image.src = localStorage.getItem("src");
+  })
+
+  profileName.forEach(name =>{
+    name.innerHTML = localStorage.getItem("name") + `&nbsp`;
+  })
 
   // Edit Name
   // Container Button edit & ok
+
   const content = document.createElement("div");
   content.classList.add("flex", "items-center")
   // button edit
@@ -378,7 +379,6 @@ function showName() {
       });
     }) 
   })
-
 };
 
 document.addEventListener('DOMContentLoaded', function () {

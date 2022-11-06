@@ -31,11 +31,6 @@
   </script>
   <!-- html2canvas -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.0/html2canvas.min.js"></script>
-  <style>
-    *:focus {
-        outline: none;
-    }
-  </style>
 </head>
 <body class="bg-gradient-to-r from-dark to-cyan " >
   <nav class="shadow-sm shadow-gray-100 px-2 sm:px-4 py-2.5 rounded-lg bg-glass">
@@ -46,8 +41,12 @@
         </a>
       </div>
       <div class="flex items-center md:order-2">
-        <h1 class="text-white" id="profile-name">&nbsp;</h1>
-        <img type="button"  class="w-8 h-8 rounded-full cursor-pointer" src="https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png"  data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start" id="profile-img">
+        <div class="hover:bg-glass-2 flex items-center px-3 py-1.5 rounded-md">
+          <h1 class="text-white hover:cursor-default font-medium" id="profile-name">&nbsp;</h1>
+          <img type="button" class="w-8 h-8 rounded-full cursor-pointer"
+            src="https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png" data-dropdown-toggle="userDropdown"
+            data-dropdown-placement="bottom-start" id="profile-img">
+        </div>
         <!-- Dropdown menu -->
         <div id="userDropdown"
           class="hidden z-10 bg-white rounded divide-y divide-gray-100 shadow ">
@@ -56,7 +55,7 @@
           </div>
           <ul class="py-1 text-sm text-gray-700 " aria-labelledby="avatarButton">
             <li>
-              <a href="#" class="block py-2 px-4 hover:bg-gray-100 ">Dashboard</a>
+              <a href="/" class="block py-2 px-4 hover:bg-gray-100 ">Dashboard</a>
             </li>
             <li>
               <a href="#" class="block py-2 px-4 hover:bg-gray-100 ">Profile</a>
@@ -114,6 +113,55 @@
       </div>
   </nav>
   
+  <main class="flex justify-center flex-col items-center mt-4 ">
+    <img src="" id="profile-img" class="rounded-full w-32 h-32 p-2 relative z-10" alt="profile">
+    <div class="bg-glass text-white relative top-[-3rem] w-full md:w-3/4 border p-5 rounded-md flex justify-center flex-col items-center" style="border-image-slice: 1; border-image-source: linear-gradient(to left, #ffffff00, #fff);">
+      <h2 id="username" class="text-2xl font-medium text-center mt-6 mb-3">
+      </h2>
+      <div
+        class="inline-block py-1.5 px-7  rounded-2xl text-whites font-medium bg-gradient-to-r from-red-400 to-red-500 hover:bg-gradient-to-br shadow-lg shadow-red-500/50" id="points" >
+        224 
+        <span class="text-sm text-red-200">XP</span>
+      </div>
+      <div class="recent-result w-full mt-5">
+        <div class="overflow-x-auto relative shadow-md rounded-md">
+          <table class="w-full text-sm text-left text-gray-500 ">
+            <caption class="p-5 text-lg font-semibold text-left text-gray-50 bg-glass">
+              <div class="flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-reception-4"
+                  viewBox="0 0 16 16">
+                  <path
+                    d="M0 11.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-2zm4-3a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-5zm4-3a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-8zm4-3a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5v11a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-11z" />
+                </svg> &nbsp;
+                Recent Match
+              </div>
+            </caption>
+          <thead class="text-xs text-white uppercase bg-glass-2 ">
+            <tr>
+              <th scope="col" class="py-3 px-6">
+                Score
+              </th>
+              <th scope="col" class="py-3 px-6">
+                Correct
+              </th>
+              <th scope="col" class="py-3 px-6">
+                Incorrect
+              </th>
+              <th scope="col" class="py-3 px-6">
+                Date
+              </th>
+            </tr>
+          </thead>
+          <tbody id="tbody">
+          </tbody>
+          
+          </table>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
   <!-- Music Button -->
   <button type="button"
     class="fixed no-underline p-3.5 flex items-center justify-center text-white rounded-lg bottom-8 right-8 z-10 bg-salmon shadow-md "
@@ -126,9 +174,7 @@
     <img src="src/img/volume.png" alt="volume fill" class="w-5 h-5 text-white " id="music-icon">
   </button>
 
-  
-
-  <script src="script.js"></script>
+  <script src="scripts/profile.js"></script>
   <!-- <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script> -->
 </body>
 
