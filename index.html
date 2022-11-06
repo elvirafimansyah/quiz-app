@@ -31,6 +31,11 @@
   </script>
   <!-- html2canvas -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.0/html2canvas.min.js"></script>
+  <style>
+    *:focus {
+        outline: none;
+    }
+  </style>
 </head>
 <body class="bg-gradient-to-r from-dark to-cyan " >
   <nav class="shadow-sm shadow-gray-100 px-2 sm:px-4 py-2.5 rounded-lg bg-glass">
@@ -45,13 +50,21 @@
         <img type="button"  class="w-8 h-8 rounded-full cursor-pointer" src="https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png"  data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start" id="profile-img">
         <!-- Dropdown menu -->
         <div id="userDropdown"
-          class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow ">
-          <div class="py-3 px-4 text-sm text-gray-900 ">
-            <div id="score-name">User</div>
+          class="hidden z-10 bg-white rounded divide-y divide-gray-100 shadow ">
+          <div class="py-3 px-4 text-sm text-gray-900 flex justify-between focus:outline-none" id="edit-name">
+            <!-- Edit Name Content -->
           </div>
-          <div class="py-1 font-medium" id="signout-btn">
-            <a href="#"
-              class="block py-2 px-4 text-sm text-red-500 hover:text-red-400 hover:bg-gray-100 flex  items-center "><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-left"
+          <ul class="py-1 text-sm text-gray-700 " aria-labelledby="avatarButton">
+            <li>
+              <a href="#" class="block py-2 px-4 hover:bg-gray-100 ">Dashboard</a>
+            </li>
+            <li>
+              <a href="#" class="block py-2 px-4 hover:bg-gray-100 ">Profile</a>
+            </li>
+          </ul>
+          <div class="py-1 font-medium" >
+            <a href="#" type="button" data-modal-toggle="signout-modal"
+              class="block py-2 px-4 text-sm text-red-500 hover:text-red-400 hover:bg-gray-100 flex items-center  signout-btn"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-left"
                 viewBox="0 0 16 16">
                 <path fill-rule="evenodd"
                   d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0v2z" />
@@ -59,6 +72,43 @@
                   d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z" />
               </svg>&nbsp;&nbsp;Sign
               out</a>
+
+          </div>
+        </div>
+
+        <!-- Modal SignOut -->
+        <div id="signout-modal" tabindex="-1"
+          class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 md:inset-0 h-modal md:h-full">
+          <div class="relative p-4 w-full max-w-md h-full md:h-auto">
+            <div class="relative bg-white rounded-lg shadow ">
+              <button type="button"
+                class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center "
+                data-modal-toggle="signout-modal">
+                <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd"
+                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                    clip-rule="evenodd"></path>
+                </svg>
+                <span class="sr-only">Close modal</span>
+              </button>
+              <div class="p-6 text-center">
+                <svg aria-hidden="true" class="mx-auto mb-4 w-14 h-14 text-gray-400 " fill="none" stroke="currentColor"
+                  viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                <h3 class="mb-5 text-lg font-normal text-gray-500 " id="popup-text">Are you sure you want to sign out?</h3>
+                <button data-modal-toggle="signout-modal" type="button"
+                  class="text-white bg-red-400 hover:bg-red-500 focus:ring-4 focus:outline-none focus:ring-red-300 -800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2"
+                  id="signout-btn">
+                  Yes, I'm sure
+                </button>
+                <button data-modal-toggle="signout-modal" type="button"
+                  class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10    ">No,
+                  cancel</button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -90,17 +140,18 @@
   <section id="home" class=" my-20 flex flex-col justify-center items-center ">
     <div class="content-name max-w-md  bg-glass p-10 border"
       style="border-image-slice: 1; border-image-source: linear-gradient(to left, rgb(255,255,255,0), #fff);" id="formPlay">
-      <h1 id="text-name" class="text-white text-2xl mb-2"></h1>
-
-      <button type="button"
+      <div class="flex justify-between">
+        <button type="button"
         class="text-white bg-glass hover:bg-glass-2 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 "
         id="back-btn" title="back">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-chevron-left"
-          viewBox="0 0 16 16">
-          <path fillRule="evenodd"
-            d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
+        viewBox="0 0 16 16">
+        <path fillRule="evenodd"
+        d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
         </svg>
-      </button>
+        </button>
+       
+      </div>
 
       <label for="category" class=" text-left block mb-2 text-sm font-medium text-gray-50 ">Select Category: </label>
       <select name="category" id="select-category" 
@@ -200,8 +251,9 @@
   
   <div id="end" class="flex justify-center items-center " >
     <div class=" bg-[#F5F7FB] w-full lg:w-2/5 text-center border m-3 end" style="border-image-slice: 1; border-image-source: linear-gradient(to left, #ffffff00, #fff);" >
-      <div class="bg-salmon w-full rounded-b-2xl pt-8 pb-20 pr-8 ">
-        <div class="flex justify-end items-center">
+      <div class="bg-salmon w-full rounded-b-2xl pt-8 pb-20 px-8 ">
+        <div class="flex justify-between items-center">
+          <h1 id="text-name" class="text-white text-2xl mb-2"></h1>
           <button type="button" id="share-btn" onclick="convert()" type="button" data-modal-toggle="score-image"
             class="text-white rounded-full bg-glass w-12 h-12 flex justify-center items-center flex-col mb-1"><svg
               xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-share-fill"

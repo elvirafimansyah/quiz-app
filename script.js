@@ -1,10 +1,11 @@
 // Navbar Section
 const signOutBtn = document.getElementById("signout-btn");
+const contEditName = document.getElementById("edit-name");
 // Name Section
 const sectionName = document.getElementById("name")
 const inputName = document.getElementById("input-name");
 const submitNameBtn = document.getElementById("submit-name");
-const displayName = document.getElementById("text-name");
+const displayName = document.querySelectorAll("#text-name");
 const preview = document.getElementById("preview-profile");
 const inputProfile = document.getElementById("input-profile");
 const formName = document.getElementById("form-name");
@@ -25,18 +26,19 @@ const options = document.getElementById("options");
 const displayLength = document.getElementById("length");
 const displayScore = document.getElementById("score");
 const profileName = document.getElementById("profile-name")
-const profileImage = document.querySelectorAll("#profile-img");
+const profileImage = document.querySelector("#profile-img");
 const displayCategory = document.getElementById("display-category");
 const displayDiffuculty = document.getElementById("display-diffuculty");
 const modalText = document.getElementById("popup-text")
 // Score Section
 const sectionScore = document.getElementById("end");
-const scoreName = document.querySelectorAll("#score-name");
+const scoreName = document.querySelector("#score-name");
 const shareBtn = document.getElementById("share-btn");
 const correctBar = document.getElementById("progress-correct");
 const displayCorrect = document.getElementById("display-correct");
 const displayIncorrect = document.getElementById('display-incorrect');
 const playAgainBtn = document.getElementById('playagain-btn');
+
 
 // Music Function
 const musicBtn = document.getElementById("music-btn");
@@ -53,7 +55,7 @@ musicBtn.addEventListener("click", () => {
 })
 
 // Profile Image
-document.getElementById("profile").addEventListener("change", function(){
+document.getElementById("profile").addEventListener("change", function () {
   const reader = new FileReader();
   reader.addEventListener("load", () => {
     console.log(reader.result)
@@ -78,20 +80,6 @@ function genereteURL(name) {
   window.history.replaceState({}, '', location.pathname + '?' + params + '?result_score');
 }
 
-// shareBtn.addEventListener("click", async () => {
-//   const shareData = {
-//     title: `${window.document.title}`,
-//     url: `${window.document.location.href}`
-//   }
-//   try {
-//     await navigator.share(shareData);
-//     console.log("berhasil")
-//   } catch (err) {
-//     console.error("error")
-//   }
-// })
-
-
 submitNameBtn.addEventListener('click', () => {
   let name = inputName.value;
   name = name.split(" ")              // Memenggal nama menggunakan spasi
@@ -101,12 +89,17 @@ submitNameBtn.addEventListener('click', () => {
     .join(" ");
 
   localStorage.setItem("name", name);
-  showName()
+  showName()  
+
+  // edit name
+
 
   sectionHome.classList.remove("hidden");
   sectionName.classList.add("hidden");
   genereteURL(name)
 })
+
+
 
 
 
@@ -205,7 +198,7 @@ playBtn.addEventListener("click", async () => {
 
   if (categoryValues && diffucultValues !== "" && limitValues <= 20) {
     await getQuizzes(diffucultValues, categoryValues, limitValues)
-  } else  {
+  } else {
     nextBtn.classList.add("hidden");
     submitBtn.classList.add("hidden");
     displayScore.classList.add("hidden");
@@ -274,33 +267,33 @@ async function getQuizzes(diffucult = "", category = "", limit) {
     updateQuestion(resp, optionCard, resp.length)
   });
 
-  
-
   submitBtn.addEventListener("click", () => {
     sectionQuiz.classList.add("hidden");
     sectionScore.classList.remove("hidden")
-  
+
     //save data
     let percentScore = ((score / resp.length) * 100).toFixed(0)
     let incorrectScore = resp.length - score
-  
+
     const objectResult = addResult(
       percentScore,
       score,
-      incorrectScore
+      incorrectScore,
+      new Date().getTime()
     )
-  
+
     displayResultElement(objectResult)
   });
 }
 
 const scoreResult = JSON.parse(localStorage.getItem("data_result")) || [];
 
-function addResult(score, correct, incorrect) {
+function addResult(score, correct, incorrect, createAt) {
   scoreResult.push({
     score,
     correct,
-    incorrect
+    incorrect,
+    createAt
   })
 
   localStorage.setItem("data_result", JSON.stringify(scoreResult))
@@ -318,31 +311,84 @@ function displayResultElement({ score, correct, incorrect }) {
 scoreResult.forEach(displayResultElement)
 
 function showName() {
-  displayName.innerHTML = `
-      <div class="flex">
-        <img src="${localStorage.getItem("src")}" class="w-10 h-10 rounded-full"/> &nbsp; 
-        <h3>${localStorage.getItem("name")}</h3> 
-      </div>
-    `;
-
-  for (let i = 0; i < profileImage.length; i++) {
-    profileImage[i].src = localStorage.getItem("src");
+  for (let i = 0; i < displayName.length; i++) {
+    displayName[i].innerHTML = `
+        <div class="flex">
+          <img src="${localStorage.getItem("src")}" class="w-10 h-10 rounded-full"/> &nbsp; 
+          <h3>${localStorage.getItem("name")}</h3> 
+        </div>
+      `;
   }
+
+  profileImage.src = localStorage.getItem("src");
   profileName.innerHTML = localStorage.getItem("name") + `&nbsp`;
-  
-  scoreName.forEach(name => {
-    name.innerHTML = localStorage.getItem("name")
+
+  // Edit Name
+  // Container Button edit & ok
+  const content = document.createElement("div");
+  content.classList.add("flex", "items-center")
+  // button edit
+  const edit = document.createElement("button");
+  edit.classList.add("bg-salmon", "p-2", "rounded-md", "mr-2");
+  edit.setAttribute("title", "edit name")
+  edit.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#fff" class="bi bi-pencil-square" viewBox="0 0 16 16">
+    <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+    <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+  </svg>`
+  // button ok
+  const ok = document.createElement("button");
+  ok.innerHTML = "OK"
+  ok.classList.add("bg-blue-500", "px-2", "py-1.5", "rounded-md", "mr-2","hidden", "text-white");
+  // button cancel
+  const cancel = document.createElement("button");
+  cancel.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#fff" class="bi bi-x-lg" viewBox="0 0 16 16">
+  <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+  </svg>`;
+  cancel.classList.add("bg-red-500", "p-2", "rounded-md", "hidden")  
+  // element content insert edit dan okay element 
+  content.appendChild(edit)
+  content.appendChild(ok)
+  content.appendChild(cancel)
+  contEditName.innerHTML = `
+  <input type="text" class="border-none outline-none appearance-none cursor-intial pointer-events-none p-0  focus:outline-none focus:border-none select-none w-2/3 font-medium mr-2" style=":focus: outline-none " value="${localStorage.getItem("name")}" readonly>
+  `
+  // element contEditName insert content
+  contEditName.appendChild(content)
+
+  edit.addEventListener("click", () => {
+    const input = contEditName.querySelector("input");
+    input.removeAttribute("readonly")
+    input.focus()
+    input.classList.remove("pointer-events-none")
+    ok.classList.remove('hidden')
+    cancel.classList.remove("hidden")
+    input.addEventListener('blur', (e) => {
+      input.setAttribute('readonly', true);
+      const currentName = e.target.value;
+      ok.addEventListener("click", () => {
+        if (currentName !== "") {
+          localStorage.setItem('name', currentName);
+          showName()
+        } else {
+          showName()
+        }
+      })
+      cancel.addEventListener('click', () => {
+        showName()
+      });
+    }) 
   })
+
 };
 
 document.addEventListener('DOMContentLoaded', function () {
   inputName.focus();
   if (localStorage.getItem("name") || localStorage.getItem("src")) {
     showName()
-  } else if (!localStorage.getItem("name") ) {
-    sectionName.classList.remove("hidden");
+  } else {
+    sectionName.classList.toggle("hidden");
     sectionHome.classList.add('hidden')
-  } 
+  }
 });
 
 if (localStorage.getItem("data_result")) {
@@ -361,7 +407,7 @@ backBtn.addEventListener("click", () => {
   localStorage.clear()
   sectionName.classList.remove("hidden")
   window.location.reload()
-}); 
+});
 
 playAgainBtn.addEventListener("click", () => {
   sectionScore.classList.add("hidden");
@@ -376,7 +422,7 @@ function convert() {
   html2canvas(capture).then(function (canvas) {
     if (click === 1) {
       result.append(canvas)
-    } 
+    }
     let cvs = document.querySelector("canvas");
     let dataURI = cvs.toDataURL("image/jpeg");
     let downloadLink = document.querySelector(".result>a");
@@ -386,6 +432,8 @@ function convert() {
   });
   result.style.display = "block";
 }
+
+
 
 // Signout
 signOutBtn.onclick = () => {
@@ -406,39 +454,4 @@ const displayOptions = (option, index) => {
     </li>
   `
 }
-
-// setUpDownloadPageAsImage();
-
-// function setUpDownloadPageAsImage() {
-//   shareBtn.addEventListener("click", function () {
-//     html2canvas(document.body).then(function (canvas) {
-//       console.log(canvas);
-//       simulateDownloadImageClick(canvas.toDataURL(), 'file-name.png');
-//     });
-//   });
-// }
-
-// function simulateDownloadImageClick(uri, filename) {
-//   var link = document.createElement('a');
-//   if (typeof link.download !== 'string') {
-//     window.open(uri);
-//   } else {
-//     link.href = uri;
-//     link.download = filename;
-//     accountForFirefox(clickLink, link);
-//   }
-// }
-
-// function clickLink(link) {
-//   link.click();
-// }
-
-// function accountForFirefox(click) { // wrapper function
-//   let link = arguments[1];
-//   document.body.appendChild(link);
-//   click(link);
-//   document.body.removeChild(link);
-// }
-
-
 
