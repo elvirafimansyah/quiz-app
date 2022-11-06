@@ -191,7 +191,7 @@ playBtn.addEventListener("click", async () => {
   let diffucultValues = diffucult.dataset.value;
   let limitValues = limit.value;
 
-  if (categoryValues && diffucultValues !== "" && limitValues <= 20) {
+  if (categoryValues && diffucultValues !== "" && limitValues <= 20 && limitValues > 1) {
     await getQuizzes(diffucultValues, categoryValues, limitValues)
   } else {
     nextBtn.classList.add("hidden");
@@ -283,17 +283,18 @@ async function getQuizzes(diffucult = "", category = "", limit) {
 
 const scoreResult = JSON.parse(localStorage.getItem("data_result")) || [];
 
-function addResult(score, correct, incorrect, createAt) {
+function addResult(score, correct, incorrect, createAt, total) {
   scoreResult.push({
     score,
     correct,
     incorrect,
-    createAt
+    createAt,
+    total
   })
 
   localStorage.setItem("data_result", JSON.stringify(scoreResult))
 
-  return { score, correct, incorrect, createAt }
+  return { score, correct, incorrect, createAt, total }
 }
 
 function displayResultElement({ score, correct, incorrect }) {
@@ -391,12 +392,16 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 });
 
-if (localStorage.getItem("data_result")) {
-  sectionHome.classList.add("hidden")
-  console.log("sementara!")
-} else {
-  sectionScore.classList.add("hidden");
+function saveScoreResult() {
+  if (localStorage.getItem("data_result")) {
+    sectionHome.classList.add("hidden")
+    console.log("sementara!")
+  } else {
+    sectionScore.classList.add("hidden");
+  }
 }
+
+saveScoreResult()
 
 function quit() {
   window.location.reload()

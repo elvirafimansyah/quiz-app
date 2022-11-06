@@ -89,10 +89,10 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 });
 
+// Table
 // display recent match from localstorage data
 const dataObjects = localStorage.getItem("data_result");
 const obj = JSON.parse(dataObjects)
-console.log(obj)
 let ex =""
 obj.forEach(data => ex += `  
   <tr class="bg-white border-b ">
@@ -114,6 +114,35 @@ tbody.innerHTML = ex;
 
 
 //total Data
-tbody.innerHTML += `
-  
-`
+let scoreObj = [];
+let totalScore = 0;
+obj.forEach(e => {
+  scoreObj.push(Number(e.score))
+})
+for (var i = 0; i < scoreObj.length; i++) {
+  totalScore += scoreObj[i];
+  localStorage.setItem("total", totalScore)
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  if (localStorage.getItem("total")) {
+    // display html total
+    tbody.innerHTML += `
+      <tr class="bg-gray-100 border-b ">
+        <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap ">
+        Total Score
+        </th>
+        <td class="py-4 px-6">
+        </td>
+        <td class="py-4 px-6">
+        </td>
+        <td class="py-4 px-6">
+          ${localStorage.getItem("total")}
+        </td>
+      </tr>
+    `
+    // Display Points
+    const points = document.getElementById('points');
+    points.innerHTML = localStorage.getItem("total") + `&nbsp;<span class="text-sm text-red-200">XP</span>`
+  }
+})
