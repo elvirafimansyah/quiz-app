@@ -58,7 +58,6 @@ musicBtn.addEventListener("click", () => {
 document.getElementById("profile").addEventListener("change", function () {
   const reader = new FileReader();
   reader.addEventListener("load", () => {
-    console.log(reader.result)
     localStorage.setItem("src", reader.result)
     preview.src = reader.result;
     preview.style.width = '100px';
@@ -201,7 +200,12 @@ playBtn.addEventListener("click", async () => {
     modalText.innerText = "Are you sure you want to try again?";
     options.innerHTML = `<div class="p-4 mb-4 text-md lg:text-xl text-red-700 bg-red-100 rounded-lg" role="alert">
       <span class="font-medium">Please try again!</span> Category, Diffuculty, Limit must be filled out. 
-    </div>`
+    </div>
+    <div class="p-4 mb-4 text-sm text-yellow-700 bg-yellow-100 rounded-lg " role="alert">
+      <span class="font-medium">Limit Values must be less than 20 and more than 1</span> 
+    </div>
+    `
+
   }
 })
 
@@ -389,6 +393,7 @@ document.addEventListener('DOMContentLoaded', function () {
   } else {
     sectionName.classList.toggle("hidden");
     sectionHome.classList.add('hidden')
+    
   }
 });
 
