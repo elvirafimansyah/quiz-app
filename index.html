@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" class="h-full">
-
+<html lang="en" >
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Quiz Game | Elvira Firmansyah</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Flowbite -->
   <link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.3/dist/flowbite.min.css" />
@@ -33,7 +32,6 @@
   <!-- html2canvas -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.0/html2canvas.min.js"></script>
 </head>
-
 <body class="bg-gradient-to-r from-dark to-cyan ">
   <nav class="shadow-sm shadow-gray-100 px-2 sm:px-4 py-2.5 rounded-lg bg-glass">
     <div class="container flex flex-wrap justify-between items-center mx-auto">
@@ -159,7 +157,6 @@
           </svg>
         </button>
       </div>
-
       <label for="category" class=" text-left block mb-2 text-sm font-medium text-gray-50 ">Select Category: </label>
       <select name="category" id="select-category"
         class="bg-gray-50 border border-gray-300 px-20 text-gray-900 text-sm rounded-lg focus:ring-red-400 focus:border-red-400 block w-full p-2.5 "
@@ -269,7 +266,6 @@
     </div>
     <!-- End Main Box Question -->
   </section>
-
   <div id="end" class="flex justify-center items-center ">
     <div class=" bg-[#F5F7FB] w-full lg:w-2/5 text-center border m-3 end"
       style="border-image-slice: 1; border-image-source: linear-gradient(to left, #ffffff00, #fff);">
@@ -381,6 +377,18 @@
       </div>
     </div>
   </div>
+  <!-- Footer -->
+  <footer
+    class="fixed bottom-0 left-0 z-5 p-4 w-full bg-glass border-t border-gray-200 shadow md:flex md:items-center md:justify-around md:p-6 ">
+    <span class="text-sm text-white sm:text-center ">© 2022 <a href="https://flowbite.com/"
+        class="hover:underline">Quiz Game™</a>. All Rights Reserved.
+    </span>
+    <ul class="flex flex-wrap items-center mt-3 text-sm text-white  sm:mt-0">
+      <li>
+        <a href="https://elvira.vercel.app" target="blank" class="mr-4 hover:underline md:mr-6 ">Created by <b>Elvira Firmansyah</b></a>
+      </li>
+    </ul>
+  </footer>
   <!-- Music Button -->
   <button type="button"
     class="fixed no-underline p-3.5 flex items-center justify-center text-white rounded-lg bottom-8 right-8 z-10 bg-salmon shadow-md "
