@@ -144,10 +144,13 @@ document.addEventListener("DOMContentLoaded", () => {
     // Display Points
     const points = document.getElementById('points');
     points.innerHTML = localStorage.getItem("total") + `&nbsp;<span class="text-sm text-red-200">XP</span>`
-  } else if (JSON.parse(localStorage.getItem("data_result")).length > 3) {
-    footer.classList.remove("fixed")
   }
 })
+
+// Footer when data more than 3
+if (obj.length > 3) {
+  footer.classList.remove("fixed");
+}
 
 //music function 
 const musicBtn = document.getElementById("music-btn");
