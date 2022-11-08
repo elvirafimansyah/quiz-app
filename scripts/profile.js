@@ -144,7 +144,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Display Points
     const points = document.getElementById('points');
     points.innerHTML = localStorage.getItem("total") + `&nbsp;<span class="text-sm text-red-200">XP</span>`
-  } else if (obj.length > 5) {
+  } else if (obj.length > 3) {
     footer.classList.remove("fixed")
   }
 })
