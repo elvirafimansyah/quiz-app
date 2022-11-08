@@ -4,7 +4,7 @@ const signOutBtn = document.getElementById("signout-btn");
 const contEditName = document.querySelector("#edit-name");
 const username = document.getElementById("username")
 const tbody = document.getElementById("tbody");
-
+const footer = document.querySelector('footer')
 
 function showName() {
   profileImage.forEach(img => {
@@ -144,5 +144,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Display Points
     const points = document.getElementById('points');
     points.innerHTML = localStorage.getItem("total") + `&nbsp;<span class="text-sm text-red-200">XP</span>`
+  } else if (obj.length > 5) {
+    footer.classList.remove("fixed")
   }
 })

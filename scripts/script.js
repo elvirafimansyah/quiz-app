@@ -38,7 +38,8 @@ const correctBar = document.getElementById("progress-correct");
 const displayCorrect = document.getElementById("display-correct");
 const displayIncorrect = document.getElementById('display-incorrect');
 const playAgainBtn = document.getElementById('playagain-btn');
-
+// footer
+const footer = document.querySelector("footer")
 
 // Music Function
 const musicBtn = document.getElementById("music-btn");
@@ -94,6 +95,7 @@ submitNameBtn.addEventListener('click', () => {
 
   sectionHome.classList.remove("hidden");
   sectionName.classList.add("hidden");
+  
   genereteURL(name)
 })
 
@@ -185,7 +187,7 @@ const playBtn = document.getElementById("play-btn");
 playBtn.addEventListener("click", async () => {
   sectionQuiz.classList.remove("hidden");
   sectionHome.classList.add("hidden");
-
+  footer.classList.remove("fixed")
   let categoryValues = category.dataset.value;
   let diffucultValues = diffucult.dataset.value;
   let limitValues = limit.value;
@@ -198,6 +200,7 @@ playBtn.addEventListener("click", async () => {
     displayScore.classList.add("hidden");
     quitBtn.innerText = "Try Again";
     modalText.innerText = "Are you sure you want to try again?";
+    footer.classList.add("fixed")
     options.innerHTML = `<div class="p-4 mb-4 text-md lg:text-xl text-red-700 bg-red-100 rounded-lg" role="alert">
       <span class="font-medium">Please try again!</span> Category, Diffuculty, Limit must be filled out. 
     </div>
@@ -206,6 +209,9 @@ playBtn.addEventListener("click", async () => {
     </div>
     `
 
+    category.value = "";
+    diffucult.value = "";
+    limit.value = ""
   }
 })
 
@@ -269,7 +275,6 @@ async function getQuizzes(diffucult = "", category = "", limit) {
   submitBtn.addEventListener("click", () => {
     sectionQuiz.classList.add("hidden");
     sectionScore.classList.remove("hidden")
-
     //save data
     let percentScore = ((score / resp.length) * 100).toFixed(0)
     let incorrectScore = resp.length - score
@@ -393,14 +398,13 @@ document.addEventListener('DOMContentLoaded', function () {
   } else {
     sectionName.classList.toggle("hidden");
     sectionHome.classList.add('hidden')
-    
   }
 });
 
 function saveScoreResult() {
   if (localStorage.getItem("data_result")) {
-    sectionHome.classList.add("hidden")
-    console.log("sementara!")
+    sectionHome.classList.add("hidden");
+    footer.classList.remove("fixed")
   } else {
     sectionScore.classList.add("hidden");
   }
@@ -422,6 +426,10 @@ backBtn.addEventListener("click", () => {
 playAgainBtn.addEventListener("click", () => {
   sectionScore.classList.add("hidden");
   sectionHome.classList.remove("hidden");
+  footer.classList.add("fixed")
+  category.value = "";
+  diffucult.value = "";
+  limit.value = ""
 })
 
 let click = 0;
@@ -456,12 +464,13 @@ const displayOptions = (option, index) => {
     <li>
       <input type="radio" id="${option}" name="option" value="${option}" class="hidden peer radio-option" required>
       <label for="${option}"
-        class="inline-flex justify-between  items-center w-96 p-5 m-2 text-white bg-glass-2 rounded-lg border border-gray-200 cursor-pointer peer-checked:border-red-400 peer-checked:text-red-400 hover:text-red-400 hover:bg-gray-100">
+        class="inline-flex justify-between items-center w-96 p-5 m-2 text-white bg-glass-2 rounded-lg border border-gray-200 cursor-pointer peer-checked:border-red-400 peer-checked:text-red-400 hover:text-red-400 hover:bg-gray-100">
         <div class="block">
-          <div class="w-full text-lg font-semibold">${option}</div>
+          <div class="w-full text-smmd:text-lg font-semibold word-break">${option}</div>
         </div>
       </label>
     </li>
   `
 }
+
 
