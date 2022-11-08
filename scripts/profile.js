@@ -144,7 +144,21 @@ document.addEventListener("DOMContentLoaded", () => {
     // Display Points
     const points = document.getElementById('points');
     points.innerHTML = localStorage.getItem("total") + `&nbsp;<span class="text-sm text-red-200">XP</span>`
-  } else if (obj.length > 3) {
+  } else if (JSON.parse(localStorage.getItem("data_result")).length > 3) {
     footer.classList.remove("fixed")
+  }
+})
+
+//music function 
+const musicBtn = document.getElementById("music-btn");
+musicBtn.addEventListener("click", () => {
+  const musicAudio = document.getElementById("music-audio");
+  const musicIcon = document.getElementById("music-icon")
+  if (musicAudio.paused) {
+    musicAudio.play();
+    musicIcon.src = "src/img/volume.png"
+  } else {
+    musicAudio.pause();
+    musicIcon.src = "src/img/volume-mute.png"
   }
 })
